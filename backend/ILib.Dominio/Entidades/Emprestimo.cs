@@ -1,9 +1,10 @@
-﻿using ILib.Dominio.Enums;
+﻿using ILib.Core;
+using ILib.Dominio.Enums;
 using System;
 
 namespace ILib.Dominio.Entidades
 {
-    public class Emprestimo
+    public class Emprestimo : Entidade
     {
         public int LivroId { get; set; }
 

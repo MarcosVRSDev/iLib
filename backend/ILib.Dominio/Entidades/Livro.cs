@@ -5,7 +5,7 @@ namespace ILib.Dominio.Entidades
 {
     public class Livro : Entidade
     {
-        public string Codigo { get; set; } //DEV-01 //FIN-01
+        public string Codigo { get; set; }
         public string FotoUrl { get; set; }
 
         public string Descricao { get; set; }
