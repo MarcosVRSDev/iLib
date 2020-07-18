@@ -26,23 +26,7 @@ export const routes: Routes = [
       {
         path: 'login',
         component: NbLoginComponent,
-      },
-      {
-        path: 'register',
-        component: NbRegisterComponent,
-      },
-      {
-        path: 'logout',
-        component: NbLogoutComponent,
-      },
-      {
-        path: 'request-password',
-        component: NbRequestPasswordComponent,
-      },
-      {
-        path: 'reset-password',
-        component: NbResetPasswordComponent,
-      },
+      }
     ],
   },
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
