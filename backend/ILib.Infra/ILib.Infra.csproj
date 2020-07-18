@@ -18,9 +18,4 @@
     <ProjectReference Include="..\ilib.dominio\ILib.Dominio.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Mapeamento\" />
-    <Folder Include="Repositorio\" />
-  </ItemGroup>
-
 </Project>

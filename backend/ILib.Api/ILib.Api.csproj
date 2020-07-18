@@ -8,10 +8,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ilib.dominio\ILib.Dominio.csproj" />
     <ProjectReference Include="..\ilib.infra\ILib.Infra.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\ILib.Servicos\ILib.Servicos.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

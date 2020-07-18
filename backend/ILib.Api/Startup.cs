@@ -1,5 +1,8 @@
 using System.Linq;
+using ILib.Core.Dados;
+using ILib.Dominio.Repositorio;
 using ILib.Infra;
+using ILib.Infra.Repositorio;
 using ILib.Servicos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,6 +39,8 @@ namespace ILib.Api
             services.AddControllers();
 
             services.AddServicos();
+            services.AddTransient<ILivroRepositorio, LivroRepositorio>();
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

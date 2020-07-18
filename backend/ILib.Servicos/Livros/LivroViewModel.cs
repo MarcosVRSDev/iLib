@@ -1,10 +1,11 @@
-﻿using ILib.Core;
+﻿using ILib.Core.DominioObjetos;
 using ILib.Dominio.Enums;
 
-namespace ILib.Dominio.Entidades
+namespace ILib.Servicos.Livros
 {
-    public class Livro : Entidade
+    public class LivroViewModel : ViewModel
     {
+        
         public string Codigo { get; set; }
 
         public string FotoUrl { get; set; }
@@ -20,6 +21,5 @@ namespace ILib.Dominio.Entidades
         public EEstadoLivro Estado { get; set; }
 
         public string Observacoes { get; set; }
-
     }
 }
