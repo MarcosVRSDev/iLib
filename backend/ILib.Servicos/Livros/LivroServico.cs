@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using ILib.Dominio.Entidades;
 using ILib.Dominio.Repositorio;
-using System;
+using ILib.Servicos.Livros.Validadores.Edicao;
+using ILib.Servicos.Livros.Validadores.Exclusao;
+using ILib.Servicos.Livros.Validadores.Inclusao;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ILib.Servicos.Livros
@@ -11,37 +14,105 @@ namespace ILib.Servicos.Livros
     {
         private readonly IMapper _mapper;
         private readonly ILivroRepositorio _livroRepositorio;
+        private readonly ILivroValidacaoInclusao _livroValidacaoInclusao;
+        private readonly ILivroValidacaoExclusao _livroValidacaoExclusao;
+        private readonly ILivroValidacaoEdicao _livroValidacaoEdicao;
 
-        public LivroServico(IMapper mapper, ILivroRepositorio livroRepositorio)
+        public List<string> Erros { get; }
+
+        public LivroServico(
+            IMapper mapper, 
+            ILivroRepositorio livroRepositorio,
+            ILivroValidacaoInclusao livroValidacaoInclusao,
+            ILivroValidacaoExclusao livroValidacaoExclusao,
+            ILivroValidacaoEdicao livroValidacaoEdicao)
         {
             _mapper = mapper;
             _livroRepositorio = livroRepositorio;
+            _livroValidacaoInclusao = livroValidacaoInclusao;
+            _livroValidacaoExclusao = livroValidacaoExclusao;
+            _livroValidacaoEdicao = livroValidacaoEdicao;
+
+            Erros = new List<string>();
         }
+
+        //Commands
 
         public async Task<LivroViewModel> Criar(LivroViewModel livro)
         {
-            var obj = await _livroRepositorio.Criar(_mapper.Map<Livro>(livro));
-            return _mapper.Map<LivroViewModel>(obj);
+            var validacoes = _livroValidacaoInclusao.Validar(livro);
+
+            if(validacoes.IsValid)
+            {
+                var obj = await _livroRepositorio.Criar(_mapper.Map<Livro>(livro));
+                return _mapper.Map<LivroViewModel>(obj);
+            }
+
+            Erros.AddRange(validacoes.Errors.Select(erro => erro.ErrorMessage).ToList());
+            return livro;
         }
 
-        public Task<LivroViewModel> Editar(LivroViewModel livro)
+        public async Task<LivroViewModel> Editar(LivroViewModel livro)
         {
-            throw new System.NotImplementedException();
+            var validacoes = _livroValidacaoEdicao.Validar(livro);
+
+            if (validacoes.IsValid)
+            {
+                var obj = await _livroRepositorio.Editar(_mapper.Map<Livro>(livro));
+                return _mapper.Map<LivroViewModel>(obj);
+            }
+
+            Erros.AddRange(validacoes.Errors.Select(erro => erro.ErrorMessage).ToList());
+            return livro;
         }
 
-        public Task<bool> Remover(int idLivro)
+        public async Task<bool> Remover(int idLivro)
         {
-            throw new System.NotImplementedException();
+            var validacoes = _livroValidacaoExclusao.Validar(new LivroViewModel { Id = idLivro });
+
+            if (validacoes.IsValid)
+            {
+                var obj = await _livroRepositorio.Remover(idLivro);
+                return true;
+            }
+
+            Erros.AddRange(validacoes.Errors.Select(erro => erro.ErrorMessage).ToList());
+            return false;
         }
 
-        public Task<LivroViewModel> SelecionarPorId(int idLivro)
+        //Queries
+
+        public async Task<LivroViewModel> SelecionarPorId(int idLivro)
         {
-            throw new System.NotImplementedException();
+            var livro = await _livroRepositorio.SelecionarPorId(idLivro);
+
+            return _mapper.Map<LivroViewModel>(livro);
         }
 
-        public Task<ICollection<LivroViewModel>> SelecionarTodos()
+        public async Task<ICollection<LivroViewModel>> SelecionarTodos()
         {
-            throw new System.NotImplementedException();
+            var livros = await _livroRepositorio.SelecionarTodos();
+
+            return _mapper.Map<ICollection<LivroViewModel>>(livros);
+        }
+
+        public async Task<ICollection<LivroViewModel>> SelecionarDisponiveis()
+        {
+            var livros = await _livroRepositorio.SelecionarTodos();
+            var livrosDisponiveis = new List<Livro>();
+
+            foreach(Livro l in livros)
+            {
+                if (l.Emprestado == false)
+                    livrosDisponiveis.Add(l);
+            }
+
+            return _mapper.Map<ICollection<LivroViewModel>>(livrosDisponiveis);
+        }
+
+        public bool Sucesso()
+        {
+            return Erros.Count == 0;
         }
 
         public void Dispose()

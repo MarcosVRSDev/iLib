@@ -25,7 +25,17 @@ namespace ILib.Infra.Repositorio
 
         public async Task<Livro> Editar(Livro livro)
         {
-            _contexto.Entry<Livro>(livro).State = EntityState.Modified;
+            var obj = await _contexto.Livros.FindAsync(livro.Id);
+
+            obj.Autor = livro.Autor;
+            obj.Codigo = livro.Codigo;
+            obj.Editora = livro.Editora;
+            obj.Emprestado = livro.Emprestado;
+            obj.Estado = livro.Estado;
+            obj.FotoUrl = livro.FotoUrl;
+            obj.Observacoes = livro.Observacoes;
+            obj.Titulo = livro.Titulo;
+
             await _contexto.SaveChangesAsync(default);
 
             return livro;

@@ -10,6 +10,9 @@ namespace ILib.Servicos.Livros
         Task<LivroViewModel> Editar(LivroViewModel livro);
         Task<bool> Remover(int idLivro);
         Task<ICollection<LivroViewModel>> SelecionarTodos();
+        Task<ICollection<LivroViewModel>> SelecionarDisponiveis();
         Task<LivroViewModel> SelecionarPorId(int idLivro);
+        bool Sucesso();
+        List<string> Erros { get; }
     }
 }

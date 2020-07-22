@@ -20,9 +20,73 @@ namespace ILib.Api.Controllers
         public async Task<IActionResult> Criar([FromBody] LivroViewModel livroViewModel)
         {
             var livro = await _livroServico.Criar(livroViewModel);
+
+            if (_livroServico.Sucesso())
+                return Ok(livro);
+           
+            return BadRequest(_livroServico.Erros);
+        }
+
+        [HttpPut]
+        [Route("")]
+        public async Task<IActionResult> Editar([FromBody] LivroViewModel livroViewModel)
+        {
+            var livro = await _livroServico.Editar(livroViewModel);
+
+            if (_livroServico.Sucesso())
+                return Ok(livro);
+
+            return BadRequest(_livroServico.Erros);
+        }
+
+        [HttpDelete]
+        [Route("{id:int}")]
+        public async Task<IActionResult> Remover([FromRoute] int id)
+        {
+            await _livroServico.Remover(id);
+
+            if (_livroServico.Sucesso())
+                return Ok("Livro Removido com sucesso");
+
+            return BadRequest(_livroServico.Erros);
+        }
+
+        [HttpGet]
+        [Route("{id:int}")]
+        public async Task<IActionResult> SelecionarPorId([FromRoute] int id)
+        {
+            var livro = await _livroServico.SelecionarPorId(id);
+
             if (livro != null)
                 return Ok(livro);
-            return BadRequest("Não foi possível criar o livro");
+            if (livro == null)
+                return NotFound();
+
+            return BadRequest();
+        }
+
+        [HttpGet]
+        [Route("")]
+        public async Task<IActionResult> SelecionarTodos()
+        {
+            var livros = await _livroServico.SelecionarTodos();
+
+            if (livros != null)
+                return Ok(livros);
+
+            return NoContent();
+        }
+
+        [HttpGet]
+        [Route("disponiveis")]
+        public async Task<IActionResult> SelecionarDisponiveis()
+        {
+            var livros = await _livroServico.SelecionarDisponiveis();
+
+            if (livros != null)
+                return Ok(livros);
+
+            return NoContent();
         }
     }
 }

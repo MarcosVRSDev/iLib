@@ -6,7 +6,6 @@ namespace ILib.Infra
     public class Contexto : DbContext
     {
         public DbSet<Livro> Livros { get; set; }
-        public DbSet<Biblioteca> Bibliotecas { get; set; }
         public DbSet<Emprestimo> Emprestimos { get; set; }
 
         public Contexto(DbContextOptions<Contexto> options) : base(options)
