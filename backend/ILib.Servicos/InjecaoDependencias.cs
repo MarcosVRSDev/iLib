@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using ILib.Servicos.Livros;
 using ILib.Servicos.Livros.Validadores.Edicao;
+using ILib.Servicos.Livros.Validadores.Emprestar;
+using ILib.Servicos.Livros.Validadores.Devolucao;
 using ILib.Servicos.Livros.Validadores.Exclusao;
 using ILib.Servicos.Livros.Validadores.Inclusao;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +19,8 @@ namespace ILib.Servicos
             services.AddTransient<ILivroValidacaoInclusao, LivroValidacaoInclusao>();
             services.AddTransient<ILivroValidacaoExclusao, LivroValidacaoExclusao>();
             services.AddTransient<ILivroValidacaoEdicao, LivroValidacaoEdicao>();
+            services.AddTransient<ILivroValidacaoEmprestar, LivroValidacaoEmprestar>();
+            services.AddTransient<ILivroValidacaoDevolucao, LivroValidacaoDevolucao>();
 
             //Emprestimo
 

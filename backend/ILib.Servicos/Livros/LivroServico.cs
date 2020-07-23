@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using ILib.Dominio.Entidades;
 using ILib.Dominio.Repositorio;
+using ILib.Servicos.Livros.Validadores.Devolucao;
 using ILib.Servicos.Livros.Validadores.Edicao;
+using ILib.Servicos.Livros.Validadores.Emprestar;
 using ILib.Servicos.Livros.Validadores.Exclusao;
 using ILib.Servicos.Livros.Validadores.Inclusao;
 using System.Collections.Generic;
@@ -17,6 +19,8 @@ namespace ILib.Servicos.Livros
         private readonly ILivroValidacaoInclusao _livroValidacaoInclusao;
         private readonly ILivroValidacaoExclusao _livroValidacaoExclusao;
         private readonly ILivroValidacaoEdicao _livroValidacaoEdicao;
+        private readonly ILivroValidacaoDevolucao _livroValidacaoDevolucao;
+        private readonly ILivroValidacaoEmprestar _livroValidacaoEmprestar;
 
         public List<string> Erros { get; }
 
@@ -25,13 +29,17 @@ namespace ILib.Servicos.Livros
             ILivroRepositorio livroRepositorio,
             ILivroValidacaoInclusao livroValidacaoInclusao,
             ILivroValidacaoExclusao livroValidacaoExclusao,
-            ILivroValidacaoEdicao livroValidacaoEdicao)
+            ILivroValidacaoEdicao livroValidacaoEdicao,
+            ILivroValidacaoDevolucao livroValidacaoDevolucao,
+            ILivroValidacaoEmprestar livroValidacaoEmprestar)
         {
             _mapper = mapper;
             _livroRepositorio = livroRepositorio;
             _livroValidacaoInclusao = livroValidacaoInclusao;
             _livroValidacaoExclusao = livroValidacaoExclusao;
             _livroValidacaoEdicao = livroValidacaoEdicao;
+            _livroValidacaoDevolucao = livroValidacaoDevolucao;
+            _livroValidacaoEmprestar = livroValidacaoEmprestar;
 
             Erros = new List<string>();
         }
@@ -79,6 +87,41 @@ namespace ILib.Servicos.Livros
             Erros.AddRange(validacoes.Errors.Select(erro => erro.ErrorMessage).ToList());
             return false;
         }
+        public async Task<LivroViewModel> Emprestar(int idLivro)
+        {
+            var validacoes = _livroValidacaoEmprestar.Validar(new LivroViewModel { Id = idLivro });
+
+            if(validacoes.IsValid)
+            {
+                var livro = await SelecionarPorId(idLivro);
+                livro.Emprestado = true;
+                await _livroRepositorio.Editar(_mapper.Map<Livro>(livro));
+
+                return livro;
+            }
+
+            Erros.AddRange(validacoes.Errors.Select(erro => erro.ErrorMessage).ToList());
+
+            return new LivroViewModel { Id = idLivro };
+        }
+
+        public async Task<LivroViewModel> Devolver(int idLivro)
+        {
+            var validacoes = _livroValidacaoDevolucao.Validar(new LivroViewModel { Id = idLivro });
+
+            if (validacoes.IsValid)
+            {
+                var livro = await SelecionarPorId(idLivro);
+                livro.Emprestado = false;
+                await _livroRepositorio.Editar(_mapper.Map<Livro>(livro));
+
+                return livro;
+            }
+
+            Erros.AddRange(validacoes.Errors.Select(erro => erro.ErrorMessage).ToList());
+
+            return new LivroViewModel { Id = idLivro };
+        }
 
         //Queries
 
@@ -119,5 +162,6 @@ namespace ILib.Servicos.Livros
         {
             _livroRepositorio?.Dispose();
         }
+
     }
 }

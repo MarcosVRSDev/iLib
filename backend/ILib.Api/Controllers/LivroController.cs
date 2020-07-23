@@ -51,6 +51,30 @@ namespace ILib.Api.Controllers
             return BadRequest(_livroServico.Erros);
         }
 
+        [HttpPut]
+        [Route("emprestar")]
+        public async Task<IActionResult> Emprestar([FromQuery] int id)
+        {
+            var livro = await _livroServico.Emprestar(id);
+
+            if (_livroServico.Sucesso())
+                return Ok(livro);
+
+            return BadRequest(_livroServico.Erros);
+        }
+
+        [HttpPut]
+        [Route("devolver")]
+        public async Task<IActionResult> Devolver([FromQuery] int id)
+        {
+            var livro = await _livroServico.Devolver(id);
+
+            if (_livroServico.Sucesso())
+                return Ok(livro);
+
+            return BadRequest(_livroServico.Erros);
+        }
+
         [HttpGet]
         [Route("{id:int}")]
         public async Task<IActionResult> SelecionarPorId([FromRoute] int id)
