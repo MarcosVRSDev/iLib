@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { NbCardModule } from '@nebular/theme';
 
 import { ThemeModule } from '../../@theme/theme.module';
-import { DashboardComponent } from './dashboard.component';
+import { HomeComponent } from './home.component';
 
 @NgModule({
   imports: [
@@ -10,7 +10,7 @@ import { DashboardComponent } from './dashboard.component';
     ThemeModule,
   ],
   declarations: [
-    DashboardComponent,
+    HomeComponent,
   ],
 })
-export class DashboardModule { }
+export class HomeModule { }
