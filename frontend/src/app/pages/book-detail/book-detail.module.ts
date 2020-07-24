@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { NbCardModule, NbButtonModule, NbTabsetModule } from '@nebular/theme';
 
 import { ThemeModule } from '../../@theme/theme.module';
-import { HomeComponent } from './home.component';
-import { DialogNamePromptComponent } from '../../components/dialog-name-prompt/dialog-name-prompt.component';
+import { BookDetailComponent } from './book-detail.component';
 
 @NgModule({
   imports: [
@@ -13,8 +12,7 @@ import { DialogNamePromptComponent } from '../../components/dialog-name-prompt/d
     NbTabsetModule,
   ],
   declarations: [
-    HomeComponent,
-    DialogNamePromptComponent
+    BookDetailComponent
   ],
 })
-export class HomeModule { }
+export class BookDetailModule { }

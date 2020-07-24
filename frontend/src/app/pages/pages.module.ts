@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
-import { NbMenuModule } from '@nebular/theme';
+import { NbMenuModule, NbButtonModule, NbTabsetModule } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
 import { HomeModule } from './home/home.module';
+import { BookDetailModule } from './book-detail/book-detail.module';
 import { PagesRoutingModule } from './pages-routing.module';
 
 @NgModule({
@@ -11,7 +12,10 @@ import { PagesRoutingModule } from './pages-routing.module';
     PagesRoutingModule,
     ThemeModule,
     NbMenuModule,
+    NbButtonModule,
+    NbTabsetModule,
     HomeModule,
+    BookDetailModule,
   ],
   declarations: [
     PagesComponent,
