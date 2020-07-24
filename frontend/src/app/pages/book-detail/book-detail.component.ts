@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ngx-home',
+  selector: 'ngx-book-detail',
   styleUrls: ['book-detail.component.scss'],
   templateUrl: './book-detail.component.html',
 })
