@@ -1,8 +1,3 @@
-.content {
-  display: block;
-  text-align: center;
-}
-
 nb-card {
   margin-top: 20px;
   width: 70vw;
@@ -11,3 +6,11 @@ nb-card {
 button {
   width: 30vw;
 }
+
+a {
+  position: fixed;
+  z-index: 10;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+

@@ -1,10 +1,12 @@
-<nb-card>
-  <nb-card-header>Enter your name</nb-card-header>
+<nb-card accent="warning">
+  <nb-card-header>Confirmação de empréstimo</nb-card-header>
   <nb-card-body>
-    <input #name nbInput placeholder="Name">
+    <p><strong>Ao clicar em "Confimar", você irá abrir uma solicitação para aprovação do emprestimo deste livro. Para
+        finalizar o empréstimo, você deverá retirar o livro junto ao responsável. Confirma a solicitação?
+      </strong></p>
   </nb-card-body>
   <nb-card-footer>
-    <button class="cancel" nbButton status="danger" (click)="cancel()">Cancel</button>
-    <button nbButton status="success" (click)="submit(name.value)">Submit</button>
+    <button class="cancel" nbButton status="danger" (click)="cancel()">Cancelar</button>
+    <button nbButton status="success" (click)="submit('success')">Confimar</button>
   </nb-card-footer>
 </nb-card>

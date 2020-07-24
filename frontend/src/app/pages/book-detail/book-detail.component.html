@@ -1,24 +1,28 @@
-<div class="content mx-auto col-md-12">
-  <div class="container">
-    <div class="row">
-      <nb-card accent="info">
-        <nb-card-header>Clean Code</nb-card-header>
-        <nb-card-body>
-          <img
-            src="https://lojasaraiva.vteximg.com.br/arquivos/ids/12109069-200-200/1006574337.jpg?v=637142248039070000"
-            alt="teste" width="250" height="300"><br><br>
-          <P><small><strong>COD.: DEV-001</strong></small></P>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla malesuada at ex et euismod. Aenean suscipit,
-            odio quis elementum consequat, magna purus bibendum eros, eget dictum nulla mauris sed ex. Nullam id blandit
-            dolor. Aliquam cursus felis nec mi aliquet interdum. Suspendisse ut quam non augue tincidunt fringilla.
-            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas at pretium
-            nisi. Duis sit amet leo purus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
-            cubilia curae; Suspendisse ac urna faucibus, accumsan odio mollis, lobortis lorem. Praesent eget quam massa.
-            In vestibulum bibendum est in cursus.
-          </p><br>
-          <button nbButton outline status="primary">Quero ler!</button>
-        </nb-card-body>
-      </nb-card>
-    </div>
+<div class="container">
+  <div class="row">
+    <nb-card accent="info" class="animated fadeInRight">
+      <a routerLink="/">
+        <span style="font-size: 1.5em">
+          <i class="fas fa-arrow-left"></i>
+        </span>
+      </a>
+      <nb-card-header>
+        Clean Code
+      </nb-card-header>
+      <nb-card-body>
+        <img src="https://lojasaraiva.vteximg.com.br/arquivos/ids/12109069-200-200/1006574337.jpg?v=637142248039070000"
+          alt="teste" width="250" height="300"><br><br>
+        <P><small><strong>COD.: DEV-001</strong></small></P>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla malesuada at ex et euismod. Aenean suscipit,
+          odio quis elementum consequat, magna purus bibendum eros, eget dictum nulla mauris sed ex. Nullam id blandit
+          dolor. Aliquam cursus felis nec mi aliquet interdum. Suspendisse ut quam non augue tincidunt fringilla.
+          Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas at pretium
+          nisi. Duis sit amet leo purus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
+          cubilia curae; Suspendisse ac urna faucibus, accumsan odio mollis, lobortis lorem. Praesent eget quam massa.
+          In vestibulum bibendum est in cursus.
+        </p><br>
+        <button nbButton outline status="primary" (click)="open()">Quero ler!</button>
+      </nb-card-body>
+    </nb-card>
   </div>
 </div>

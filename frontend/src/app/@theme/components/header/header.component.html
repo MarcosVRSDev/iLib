@@ -4,7 +4,8 @@
       (click)="toggleSidebar()">
       <nb-icon [icon]="(materialTheme$ | async) ? 'menu-outline' : 'menu-2-outline'"></nb-icon>
     </a>
-    <a class="logo" href="#" (click)="navigateHome()"><span><i class="fas fa-book-open"></i> iLib</span></a>
+    <a class="logo" href="#" (click)="navigateHome()">
+      <img src="../../../../assets/logo/logo.png" width="125" height="40"></a>
   </div>
   <nb-select status="primary" matRipple [selected]="currentTheme" (selectedChange)="changeTheme($event)">
     <nb-option *ngFor="let theme of themes" [value]="theme.value" matRipple>{{ theme.name }}</nb-option>
