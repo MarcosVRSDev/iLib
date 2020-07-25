@@ -33,7 +33,7 @@ namespace ILib.Infra.Repositorio
 
         public async Task<Emprestimo> Editar(Emprestimo emprestimo)
         {
-            _contexto.Entry<Emprestimo>(emprestimo).State = EntityState.Modified;
+            _contexto.Entry(emprestimo).State = EntityState.Modified;
             await _contexto.SaveChangesAsync();
             return emprestimo;
         }

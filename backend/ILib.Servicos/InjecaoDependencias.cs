@@ -7,6 +7,13 @@ using ILib.Servicos.Livros.Validadores.Exclusao;
 using ILib.Servicos.Livros.Validadores.Inclusao;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using ILib.Servicos.Emprestimos;
+using ILib.Servicos.Emprestimos.Validadores.Inclusao;
+using ILib.Servicos.Emprestimos.Validadores.Edicao;
+using ILib.Servicos.Emprestimos.Validadores.Exclusao;
+using ILib.Servicos.Emprestimos.Validadores.Confirmacao;
+using ILib.Servicos.Emprestimos.Validadores.Devolucao;
+using ILib.Servicos.Emprestimos.Validadores.SelecaoPosStatus;
 
 namespace ILib.Servicos
 {
@@ -23,6 +30,15 @@ namespace ILib.Servicos
             services.AddTransient<ILivroValidacaoDevolucao, LivroValidacaoDevolucao>();
 
             //Emprestimo
+            services.AddTransient<IEmprestimoServico, EmprestimoServico>();
+            services.AddTransient<IEmprestimoValidacaoInclusao, EmprestimoValidacaoInclusao>();
+            services.AddTransient<IEmprestimoValidacaoEdicao, EmprestimoValidacaoEdicao>();
+            services.AddTransient<IEmprestimoValidacaoCancelamento, EmprestimoValidacaoCancelamento>();
+            services.AddTransient<IEmprestimoValidacaoConfirmacao, EmprestimoValidacaoConfirmacao>();
+            services.AddTransient<IEmprestimoValidacaoDevolucao, EmprestimoValidacaoDevolucao>();
+            services.AddTransient<IEmprestimoValidacaoSelecaoPorStatus, EmprestimoValidacaoSelecaoPorStatus>();
+
+            //AutoMapper
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

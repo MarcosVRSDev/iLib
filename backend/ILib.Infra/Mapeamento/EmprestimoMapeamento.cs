@@ -27,6 +27,8 @@ namespace ILib.Infra.Mapeamento
                 .HasColumnName("Emp_Data_Devolucao")
                 .HasColumnType("timestamp");
 
+            builder.HasOne(p => p.Livro).WithMany(p => p.Emprestimos).HasForeignKey(p => p.LivroId);
+
             builder.Property(p => p.LivroId)
                 .HasColumnName("Emp_Livro_Id")
                 .IsRequired()

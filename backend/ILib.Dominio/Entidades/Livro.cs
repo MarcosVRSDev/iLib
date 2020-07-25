@@ -1,5 +1,7 @@
 ﻿using ILib.Core;
 using ILib.Dominio.Enums;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace ILib.Dominio.Entidades
 {
@@ -20,6 +22,8 @@ namespace ILib.Dominio.Entidades
         public EEstadoLivro Estado { get; set; }
 
         public string Observacoes { get; set; }
+
+        public ICollection<Emprestimo> Emprestimos { get; set; }
 
     }
 }

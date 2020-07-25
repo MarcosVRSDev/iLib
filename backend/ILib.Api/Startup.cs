@@ -40,6 +40,7 @@ namespace ILib.Api
 
             services.AddServicos();
             services.AddTransient<ILivroRepositorio, LivroRepositorio>();
+            services.AddTransient<IEmprestimoRepositorio, EmprestimoRepositorio>();
 
         }
 
