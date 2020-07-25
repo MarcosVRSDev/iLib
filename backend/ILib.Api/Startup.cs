@@ -34,8 +34,10 @@ namespace ILib.Api
 
             });
 
+            services.AddEntityFrameworkNpgsql();
+            services.AddDbContext<Contexto>(options => options.UseNpgsql(Configuration.GetConnectionString("ContextoDB")));
 
-            services.AddDbContext<Contexto>(opt => opt.UseInMemoryDatabase("Database"));
+            //services.AddDbContext<Contexto>(opt => opt.UseInMemoryDatabase("Database"));
             services.AddControllers();
 
             services.AddServicos();
