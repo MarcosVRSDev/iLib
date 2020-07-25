@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
-import { NbCardModule, NbButtonModule, NbTabsetModule } from '@nebular/theme';
+import { NbCardModule, NbButtonModule, NbTabsetModule, NbListModule, NbBadgeModule } from '@nebular/theme';
 
 import { ThemeModule } from '../../@theme/theme.module';
-import { HomeComponent } from './home.component';
-import { DialogPromptComponent } from '../../components/dialog-prompt/dialog-prompt.component';
+import { LoansComponent } from './loans.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -11,12 +10,14 @@ import { RouterModule } from '@angular/router';
     NbCardModule,
     ThemeModule,
     NbButtonModule,
+    NbListModule,
     NbTabsetModule,
+    NbCardModule,
     RouterModule,
+    NbBadgeModule,
   ],
   declarations: [
-    HomeComponent,
-    DialogPromptComponent
+    LoansComponent
   ],
 })
-export class HomeModule { }
+export class LoansModule { }

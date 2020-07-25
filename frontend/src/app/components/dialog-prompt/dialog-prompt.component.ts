@@ -4,13 +4,13 @@ import { NbToastrService } from '@nebular/theme';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'ngx-dialog-name-prompt',
-  templateUrl: 'dialog-name-prompt.component.html',
-  styleUrls: ['dialog-name-prompt.component.scss'],
+  selector: 'ngx-dialog-prompt',
+  templateUrl: 'dialog-prompt.component.html',
+  styleUrls: ['dialog-prompt.component.scss'],
 })
-export class DialogNamePromptComponent {
+export class DialogPromptComponent {
 
-  constructor(protected ref: NbDialogRef<DialogNamePromptComponent>,
+  constructor(protected ref: NbDialogRef<DialogPromptComponent>,
     private toastrService: NbToastrService,
     private router: Router) { }
 

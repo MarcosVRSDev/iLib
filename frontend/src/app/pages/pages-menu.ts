@@ -8,6 +8,20 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
+    title: 'Gerenciamento',
+    icon: 'settings-outline',
+    children: [
+      {
+        title: 'Empréstimos',
+        link: '/pages/loans',
+      },
+      {
+        title: 'Histórico',
+        link: '/pages/loans-hist',
+      }
+    ],
+  },
+  {
     title: 'FEATURES',
     group: true,
   },
