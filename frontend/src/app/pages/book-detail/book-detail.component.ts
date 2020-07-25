@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NbDialogService } from '@nebular/theme';
+import { DialogPromptComponent } from '../../components/dialog-prompt/dialog-prompt.component';
 
 @Component({
   selector: 'ngx-book-detail',
@@ -6,4 +8,9 @@ import { Component } from '@angular/core';
   templateUrl: './book-detail.component.html',
 })
 export class BookDetailComponent {
+  constructor(private dialogService: NbDialogService) {
+  }
+  open() {
+    this.dialogService.open(DialogPromptComponent);
+  }
 }
