@@ -1,3 +1,4 @@
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { NbMenuModule, NbButtonModule, NbTabsetModule, NbIconModule, NbListModule, NbBadgeModule, NbInputModule } from '@nebular/theme';
 
@@ -26,6 +27,7 @@ import { RouterModule } from '@angular/router';
     NbIconModule,
     NbBadgeModule,
     NbInputModule,
+    ReactiveFormsModule
   ],
   declarations: [
     PagesComponent,

@@ -1,11 +1,11 @@
 export interface Books {
-  Id: number,
-  Codigo: string,
-  FotoUrl: string,
-  Titulo: string,
-  Autor: string,
-  Editora: string,
-  Emprestado: boolean,
-  Estado: number,
-  Observacoes: string //Sinopse do livro ou coisa do tipo
+  id: number,
+  codigo: string,
+  fotoUrl: string,
+  titulo: string,
+  autor: string,
+  editora: string,
+  emprestado: boolean,
+  estado: number,
+  observacoes: string //Sinopse do livro ou coisa do tipo
 }

@@ -1,56 +1,73 @@
-<div class="container animated fadeInRight">
+<div *ngIf="!busy" class="container animated fadeInRight">
   <nb-card>
     <nb-card-header>
-      Titulo do Livro
+      {{ book.titulo }}
     </nb-card-header>
     <nb-list>
       <nb-list-item>
         <div class="center">
-          <img
-            src="https://lojasaraiva.vteximg.com.br/arquivos/ids/12109069-200-200/1006574337.jpg?v=637142248039070000"
-            alt="teste" width="200" height="250">
+          <img src="{{ book.fotoUrl }}" alt="teste" width="200" height="250">
         </div>
         <br><br>
         <i class="far fa-calendar-plus"></i>
-        <strong><label>Data da solicitação:</label></strong><label>25/07/2020 11:10</label><br>
+        <strong><label>Data da
+            solicitação:</label></strong><label>{{ loan.dataEmprestimo  | date: 'dd/MM/yyyy HH:mm'}}</label><br>
         <i class="far fa-calendar-minus"></i>
-        <strong><label>Data Prev. Devolução:</label></strong><label>25/07/2020 11:10</label><br>
+        <strong><label>Data Prev.
+            Devolução:</label></strong><label>{{ loan.dataPrevDevolucao | date: 'dd/MM/yyyy HH:mm' }}</label><br>
         <i class="far fa-calendar-check"></i>
-        <strong><label>Data de devolução:</label></strong><label> </label><br>
+        <strong><label>Data de
+            devolução:</label></strong><label>{{ loan.dataDevolucao | date: 'dd/MM/yyyy HH:mm' }}</label><br>
         <i class="far fa-user-circle"></i>
-        <strong><label>Usuário:</label></strong><label>Marcos Rezende</label><br>
-        <i class="fas fa-info-circle text-info"></i>
-        <strong class="text-info"><label>Status: Pendente</label></strong>
+        <strong><label>Usuário:</label></strong><label>{{ loan.usuarioId }}</label><br>
+        <div *ngIf="loan.status === 0">
+          <i class="fas fa-info-circle text-info"></i>
+          <strong class="text-info"><label>Status: Pendente</label></strong>
+        </div>
+        <div *ngIf="loan.status === 1">
+          <i class="fas fa-info-circle text-warning"></i>
+          <strong class="text-warning"><label>Status: Emprestado</label></strong>
+        </div>
+        <div *ngIf="loan.status === 2">
+          <i class="fas fa-info-circle text-danger"></i>
+          <strong class="text-danger"><label>Status: Cancelado</label></strong>
+        </div>
+        <div *ngIf="loan.status === 3">
+          <i class="fas fa-info-circle text-success"></i>
+          <strong class="text-success"><label>Status: Devolvido</label></strong>
+        </div>
       </nb-list-item>
     </nb-list>
   </nb-card>
 
   <!-- Card para Pendente -->
-  <nb-card accent="info">
+  <nb-card accent="info" *ngIf="loan.status === 0">
     <nb-card-header>
       Confirmação de Empréstimo
     </nb-card-header>
     <nb-list>
       <nb-list-item>
-        <form>
+        <form [formGroup]="form">
           <div class="form-group row">
             <label class="label col-sm-3 col-form-label">Data Prev. Devolução:</label>
             <div class="col-sm-9">
-              <input nbInput fullWidth placeholder="Escolha uma data" [nbDatepicker]="formpicker">
+              <input nbInput fullWidth placeholder="Escolha uma data" [nbDatepicker]="formpicker"
+                formControlName="date">
               <nb-datepicker #formpicker format="dd/MM/yyyy"></nb-datepicker>
             </div>
           </div>
           <div class="form-group row">
             <label for="inputPassword2" class="label col-sm-3 col-form-label">Observações:</label>
             <div class="col-sm-9">
-              <textarea rows="5" nbInput fullWidth placeholder="Ex.: Livro entregue em ótimo estado."></textarea>
+              <textarea rows="5" nbInput fullWidth placeholder="Ex.: Livro entregue em ótimo estado."
+                formControlName="obs"></textarea>
             </div>
           </div>
           <div class="form-group row">
-            <button nbTooltip="Confirmar o empréstimo." nbTooltipStatus="success" nbButton
-              status="success">Confirmar</button>
-            <button nbTooltip="Cancelar o empréstimo." nbTooltipStatus="danger" nbButton
-              status="danger">Cancelar</button>
+            <a nbTooltip="Confirmar o empréstimo." nbTooltipStatus="success" nbButton status="success"
+              (click)="submit()">Confirmar</a>
+            <a nbTooltip="Cancelar o empréstimo." nbTooltipStatus="danger" nbButton status="danger"
+              (click)="submit()">Cancelar</a>
           </div>
         </form>
       </nb-list-item>
@@ -58,29 +75,31 @@
   </nb-card>
 
   <!-- Card para Emprestado -->
-  <nb-card accent="info">
+  <nb-card accent="info" *ngIf="loan.status === 1">
     <nb-card-header>
       Confirmação de Devolução
     </nb-card-header>
     <nb-list>
       <nb-list-item>
-        <form>
+        <form [formGroup]="form">
           <div class="form-group row">
             <label class="label col-sm-3 col-form-label">Data Devolução:</label>
             <div class="col-sm-9">
-              <input nbInput fullWidth placeholder="Escolha uma data" [nbDatepicker]="formpicker">
+              <input nbInput fullWidth placeholder="Escolha uma data" [nbDatepicker]="formpicker"
+                formControlName="date">
               <nb-datepicker #formpicker format="dd/MM/yyyy"></nb-datepicker>
             </div>
           </div>
           <div class="form-group row">
             <label for="inputPassword2" class="label col-sm-3 col-form-label">Observações:</label>
             <div class="col-sm-9">
-              <textarea rows="5" nbInput fullWidth placeholder="Ex.: Livro entregue em ótimo estado."></textarea>
+              <textarea rows="5" nbInput fullWidth placeholder="Ex.: Livro entregue em ótimo estado."
+                formControlName="obs"></textarea>
             </div>
           </div>
           <div class="form-group row">
-            <button nbTooltip="Confirmar o devolução." nbTooltipStatus="success" nbButton
-              status="success">Confirmar</button>
+            <button nbTooltip="Confirmar o devolução." nbTooltipStatus="success" nbButton status="success"
+              (click)="submit()">Confirmar</button>
           </div>
         </form>
       </nb-list-item>
@@ -90,13 +109,13 @@
 
 <!-- Card para Cancelado e Devolvido -->
 
-<nb-card accent="info">
+<nb-card accent="info" *ngIf="loan.status === 2 || loan.status === 3">
   <nb-card-header>
     Detalhes do Empréstimo
   </nb-card-header>
   <nb-list>
     <nb-list-item>
-      <form>
+      <form [formGroup]="form">
         <div class="form-group row">
           <label for="inputPassword2" class="label col-sm-3 col-form-label">Observações:</label>
           <div class="col-sm-9">

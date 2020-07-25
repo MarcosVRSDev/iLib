@@ -13,6 +13,6 @@ export class LoansComponent implements OnInit {
   }
 
   goToDetail() {
-    this.router.navigateByUrl('/pages/loans-detail/1');
+    this.router.navigateByUrl('/pages/loans-detail/3');
   }
 }
