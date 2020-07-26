@@ -36,18 +36,15 @@ export class LoansService {
     return this.http.put<Loans>(`${this.api}/`, loan);
   }
 
-  cancelLoans(id: number) {
-    return this.http.put<Loans>(`${this.api}/cancelar/${id}`, null);
+  cancelLoans(loan: Loans) {
+    return this.http.put<Loans>(`${this.api}/cancelar/`, loan);
   }
 
-  confirmLoans(id: number) {
-    return this.http.put<Loans>(`${this.api}/confirmar/${id}`, null);
+  confirmLoans(loan: Loans) {
+    return this.http.put<Loans>(`${this.api}/confirmar/`, loan);
   }
 
-  giveBackLoansBook(id: number) {
-    return this.http.put<Loans>(`${this.api}/devolver/${id}`, null);
+  giveBackLoansBook(loan: Loans) {
+    return this.http.put<Loans>(`${this.api}/devolver/`, loan);
   }
-
-
-
 }
