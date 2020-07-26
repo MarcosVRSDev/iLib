@@ -14,7 +14,7 @@
             solicitação:</label></strong><label>{{ loan.dataEmprestimo  | date: 'dd/MM/yyyy HH:mm'}}</label><br>
         <i class="far fa-calendar-minus"></i>
         <strong><label>Data Prev.
-            Devolução:</label></strong><label>{{ loan.dataPrevDevolucao | date: 'dd/MM/yyyy HH:mm' }}</label><br>
+            Devolução:</label></strong><label>{{ loan.dataPrevDevolucao | date: 'dd/MM/yyyy' }}</label><br>
         <i class="far fa-calendar-check"></i>
         <strong><label>Data de
             devolução:</label></strong><label>{{ loan.dataDevolucao | date: 'dd/MM/yyyy HH:mm' }}</label><br>
@@ -41,88 +41,66 @@
   </nb-card>
 
   <!-- Card para Pendente -->
-  <nb-card accent="info" *ngIf="loan.status === 0">
+  <nb-card accent="info" *ngIf="loan.status === 0 || loan.status === 1">
     <nb-card-header>
-      Confirmação de Empréstimo
+      <label *ngIf="loan.status === 0">Confirmação de Empréstimo</label>
+      <label *ngIf="loan.status === 1">Confirmação de Devolução</label>
     </nb-card-header>
     <nb-list>
       <nb-list-item>
         <form [formGroup]="form">
           <div class="form-group row">
-            <label class="label col-sm-3 col-form-label">Data Prev. Devolução:</label>
-            <div class="col-sm-9">
+            <label *ngIf="loan.status === 0" class="label col-sm-3 col-form-label">Data Prev. Devolução:</label>
+            <div *ngIf="loan.status === 0" class="col-sm-9">
               <input nbInput fullWidth placeholder="Escolha uma data" [nbDatepicker]="formpicker"
-                formControlName="date">
+                formControlName="dataPrevDevolucao">
               <nb-datepicker #formpicker format="dd/MM/yyyy"></nb-datepicker>
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputPassword2" class="label col-sm-3 col-form-label">Observações:</label>
-            <div class="col-sm-9">
+            <label class="label col-sm-3 col-form-label">Observações:</label>
+            <div class="col-sm-9" *ngIf="loan.status === 0">
               <textarea rows="5" nbInput fullWidth placeholder="Ex.: Livro entregue em ótimo estado."
-                formControlName="obs"></textarea>
+                formControlName="observacao"></textarea>
+            </div>
+            <div class="col-sm-9" *ngIf="loan.status === 1">
+              <textarea rows="5" nbInput fullWidth placeholder="Observação de emprestímo: {{ loan.observacao }}"
+                formControlName="observacao"></textarea>
             </div>
           </div>
-          <div class="form-group row">
+          <div *ngIf="loan.status === 0" class="form-group row">
             <a nbTooltip="Confirmar o empréstimo." nbTooltipStatus="success" nbButton status="success"
-              (click)="submit()">Confirmar</a>
+              (click)="confirm()">Confirmar</a>
             <a nbTooltip="Cancelar o empréstimo." nbTooltipStatus="danger" nbButton status="danger"
-              (click)="submit()">Cancelar</a>
+              (click)="cancel()">Cancelar</a>
+          </div>
+
+          <div *ngIf="loan.status === 1" class="form-group row">
+            <a nbTooltip="Confirmar o devolução." nbTooltipStatus="success" nbButton status="success"
+              (click)="submitBook()">Confirmar</a>
           </div>
         </form>
       </nb-list-item>
     </nb-list>
   </nb-card>
 
-  <!-- Card para Emprestado -->
-  <nb-card accent="info" *ngIf="loan.status === 1">
+  <!-- Card para Cancelado e Devolvido -->
+
+  <nb-card accent="info" *ngIf="loan.status === 2 || loan.status === 3">
     <nb-card-header>
-      Confirmação de Devolução
+      Detalhes do Empréstimo
     </nb-card-header>
     <nb-list>
       <nb-list-item>
         <form [formGroup]="form">
           <div class="form-group row">
-            <label class="label col-sm-3 col-form-label">Data Devolução:</label>
+            <label class="label col-sm-3 col-form-label">Observações do processo:</label>
             <div class="col-sm-9">
-              <input nbInput fullWidth placeholder="Escolha uma data" [nbDatepicker]="formpicker"
-                formControlName="date">
-              <nb-datepicker #formpicker format="dd/MM/yyyy"></nb-datepicker>
+              <textarea rows="5" nbInput fullWidth placeholder="{{ loan.observacao }}" disabled></textarea>
             </div>
-          </div>
-          <div class="form-group row">
-            <label for="inputPassword2" class="label col-sm-3 col-form-label">Observações:</label>
-            <div class="col-sm-9">
-              <textarea rows="5" nbInput fullWidth placeholder="Ex.: Livro entregue em ótimo estado."
-                formControlName="obs"></textarea>
-            </div>
-          </div>
-          <div class="form-group row">
-            <button nbTooltip="Confirmar o devolução." nbTooltipStatus="success" nbButton status="success"
-              (click)="submit()">Confirmar</button>
           </div>
         </form>
       </nb-list-item>
     </nb-list>
   </nb-card>
 </div>
-
-<!-- Card para Cancelado e Devolvido -->
-
-<nb-card accent="info" *ngIf="loan.status === 2 || loan.status === 3">
-  <nb-card-header>
-    Detalhes do Empréstimo
-  </nb-card-header>
-  <nb-list>
-    <nb-list-item>
-      <form [formGroup]="form">
-        <div class="form-group row">
-          <label for="inputPassword2" class="label col-sm-3 col-form-label">Observações:</label>
-          <div class="col-sm-9">
-            <textarea rows="5" nbInput fullWidth placeholder="Ex.: Livro entregue em ótimo estado." disabled></textarea>
-          </div>
-        </div>
-      </form>
-    </nb-list-item>
-  </nb-list>
-</nb-card>

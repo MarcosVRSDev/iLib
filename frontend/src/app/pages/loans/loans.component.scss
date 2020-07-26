@@ -1,7 +1,19 @@
 nb-card {
-  max-width: 50vw;
+  max-width: 60vw;
   margin: 0 auto 2rem;
 }
+
+.block {
+  display: block;
+  label {
+    font-size: 0.9em;
+  }
+}
+
+i, strong, small, label {
+  padding-right: 5px;
+}
+
 .clickable {
   cursor: pointer;
   transition-duration: 0.5s;
@@ -13,4 +25,13 @@ nb-card {
   transform: scale(1.02);
   transition: background-color 1s;
   transition: transform 0.5s;
+}
+
+.centered {
+  text-align: center;
+}
+
+img#search {
+  width: 30vw;
+  height: 50vh;
 }

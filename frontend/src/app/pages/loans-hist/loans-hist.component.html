@@ -4,23 +4,27 @@
       Histórico de Empréstimos
     </nb-card-header>
     <nb-list>
-      <nb-list-item class="clickable">
-        <div class="container">
+      <nb-list-item class="clickable" *ngFor="let loan of loans" (click)="goToDetail(loan.id)">
+        <div class="container block">
           <label>
-            <strong>Codigo Limpo</strong><br>
-            <small>25/07/2020 10:17</small><br>
-            Marcos Rezende<br>
-            <strong class="text-success">Status: Finalizado</strong><br>
-          </label>
-        </div>
-      </nb-list-item>
-      <nb-list-item class="clickable">
-        <div class="container">
-          <label>
-            <strong>Codigo Limpo</strong><br>
-            <small>25/07/2020 10:17</small><br>
-            Marcos Rezende<br>
-            <strong class="text-danger">Status: Cancelado</strong><br>
+            <i class="fab fa-buffer text-primary"></i>
+            <strong class="text-primary">Codigo: {{ loan.id }}</strong><br>
+            <i class="far fa-user-circle text-hint"></i>
+            <strong id="user" class="label text-hint"> Usuário: {{ loan.usuarioId }}</strong><br>
+            <i class="far fa-calendar-plus"></i>
+            <small>Data Empréstimo: {{ loan.dataEmprestimo | date: 'dd/MM/yyyy HH:mm'}}</small><br>
+            <strong *ngIf="loan.status == 0" class="text-info">
+              <i class="fas fa-info-circle text-info"></i>Status: Pendente
+            </strong>
+            <strong *ngIf="loan.status == 1" class="text-warning">
+              <i class="fas fa-info-circle text-warning"></i>Status: Emprestado
+            </strong>
+            <strong *ngIf="loan.status == 2" class="text-danger">
+              <i class="fas fa-info-circle text-danger"></i>Status: Cancelado
+            </strong>
+            <strong *ngIf="loan.status == 3" class="text-success">
+              <i class="fas fa-info-circle text-success"></i>Status: Devolvido
+            </strong><br>
           </label>
         </div>
       </nb-list-item>

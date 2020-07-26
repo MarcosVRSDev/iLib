@@ -1,3 +1,5 @@
+import { LoansService } from './../../services/loans.service';
+import { Loans } from './../../models/loans.model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -7,12 +9,19 @@ import { Router } from '@angular/router';
   templateUrl: './loans-hist.component.html',
 })
 export class LoansHistComponent implements OnInit {
-  constructor(private router: Router) {
-  }
+  private loans: Loans[];
+
+  constructor(private router: Router, private loanService: LoansService) { }
+
   ngOnInit(): void {
+    this.loanService.getAllLoans()
+      .subscribe((loans) => {
+        this.loans = loans.slice(0).reverse();
+        console.log(loans);
+      });
   }
 
-  goToDetail() {
-    this.router.navigateByUrl('/pages/loans-detail/1');
+  goToDetail(id) {
+    this.router.navigateByUrl(`/pages/loans-detail/${id}`);
   }
 }

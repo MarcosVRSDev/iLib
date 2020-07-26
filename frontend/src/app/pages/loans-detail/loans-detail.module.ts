@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { NbCardModule, NbButtonModule, NbListModule, NbTabsetModule, NbInputModule, NbDatepickerModule, NbTooltipModule } from '@nebular/theme';
 
@@ -17,6 +18,7 @@ import { RouterModule } from '@angular/router';
     NbInputModule,
     NbDatepickerModule,
     NbTooltipModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     LoansDetailComponent
