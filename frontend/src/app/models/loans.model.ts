@@ -5,6 +5,6 @@ export interface Loans {
   dataEmprestimo: Date,
   dataPrevDevolucao: Date,
   dataDevolucao: Date,
-  observacoes: string,
+  observacao: string,
   status: number
 }
