@@ -1,0 +1,92 @@
+<div class="container animated fadeInUp">
+    <nb-card accent="info" [nbSpinner]="busy" nbSpinnerSize="giant" nbSpinnerStatus="primary">
+        <nb-card-header>
+          Cadastrar Livro
+        </nb-card-header>
+        <nb-list>
+          <nb-list-item>
+            <form [formGroup]= "form">
+              <div class="form-group row">
+                    <label class="label col-sm-3 col-form-label">Título:</label>
+                    <div class="col-sm-9">
+                    <input nbInput fullWidth placeholder="Titulo do Livro" formControlName="titulo" type="text"
+                    [ngClass] = "{'status-danger': (form.controls.titulo.invalid && !form.controls.titulo.pristine)}">
+                    </div>
+                    
+                    <br/>
+                    <br/>
+                    <br/>
+
+                    <label class="label col-sm-3 col-form-label">Selecionar foto da capa:</label>
+                    <div class="col-sm-9">
+                        <button nbButton>
+                            <input formControlName="fotoUrl" type="file"
+                            [ngClass] = "{'status-danger': (form.controls.titulo.invalid && !form.controls.titulo.pristine)}">
+                          </button>
+                    </div>
+
+                    <br/>
+                    <br/>
+                    <br/>
+
+
+                    <label class="label col-sm-3 col-form-label">Autor:</label>
+                    <div class="col-sm-9">
+                    <input nbInput fullWidth placeholder="Autor do Livro" formControlName="autor" type="text"
+                    [ngClass] = "{'status-danger': (form.controls.autor.invalid && !form.controls.autor.pristine)}">
+                    </div>
+
+                    <br/>
+                    <br/>
+                    <br/>
+
+                    <label class="label col-sm-3 col-form-label">Editora:</label>
+                    <div class="col-sm-9">
+                    <input nbInput fullWidth placeholder="Editora do Livro" formControlName="editora" type="text"
+                    [ngClass] = "{'status-danger': (form.controls.editora.invalid && !form.controls.editora.pristine)}">
+                    </div>
+
+                    <br/>
+                    <br/>
+                    <br/>
+
+                    <label class="label col-sm-3 col-form-label">Código:</label>
+                    <div class="col-sm-9">
+                    <input nbInput fullWidth placeholder="Código do Livro" formControlName="codigo" type="text"
+                    [ngClass] = "{'status-danger': (form.controls.codigo.invalid && !form.controls.codigo.pristine)}">
+                    </div>
+
+                    <br/>
+                    <br/>
+                    <br/>
+
+                    <label class="label col-sm-3 col-form-label">Descrição:</label>
+                    <div class="col-sm-9">
+                    <textarea formControlName="observacoes" rows="5" nbInput fullWidth placeholder="Resumo do livro"
+                    [ngClass] = "{'status-danger': (form.controls.observacoes.invalid && !form.controls.observacoes.pristine)}"></textarea>
+                    </div>
+
+
+
+                    <label class="label col-sm-3 col-form-label">Qualidade do Livro:</label>
+                    <div class="col-sm-9">
+                        <nb-radio-group formControlName="estado">
+                            <nb-radio checked value=0> Bom </nb-radio>
+                            <nb-radio value=1> Regular </nb-radio>
+                            <nb-radio value=2> Ruim </nb-radio>
+                        </nb-radio-group>
+                    </div>
+               
+                        
+                </div>
+              
+              
+              <div class="form-group row">
+                <a nbTooltip="Cadastrar Livro." nbTooltipStatus="success" nbButton status="success" (click)="submit()" [disabled]="form.invalid">Cadastrar</a>
+              </div>
+            
+            </form>
+          </nb-list-item>
+        </nb-list>
+      </nb-card>
+</div>

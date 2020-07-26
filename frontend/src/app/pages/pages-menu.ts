@@ -12,6 +12,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'settings-outline',
     children: [
       {
+        title: 'Cadastrar Livro',
+        link: '/pages/create-book',
+      },
+      {
         title: 'Empréstimos',
         link: '/pages/loans',
       },

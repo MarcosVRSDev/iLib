@@ -14,4 +14,10 @@ export class LoansService {
   getLoansById(id: number) {
     return this.http.get<Loans>(`${this.api}/${id}`);
   }
+
+  getAllLoans() {
+    return this.http.get<Loans>(`${this.api}/`);
+  }
+
+  
 }

@@ -1,3 +1,4 @@
+import { BookCreateComponent } from './book-create/book-create.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
@@ -36,6 +37,10 @@ const routes: Routes = [{
     {
       path: 'loans-detail/:id',
       component: LoansDetailComponent,
+    },
+    {
+      path: 'create-book',
+      component: BookCreateComponent,
     },
   ],
 }];

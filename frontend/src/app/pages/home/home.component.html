@@ -2,28 +2,49 @@
   <nb-tabset fullWidth>
     <nb-tab tabTitle="Disponíveis">
       <div class="row">
-        <nb-card status="primary" class="animated fadeInUp">
-          <nb-card-header>Clean Code</nb-card-header>
+        
+        
+        <nb-card status="primary" class="animated fadeInUp" *ngFor="let book of availableBooks">
+          <nb-card-header>{{ book.titulo.substring(0, 25) }}...</nb-card-header>
           <nb-card-body>
             <img
-              src="https://lojasaraiva.vteximg.com.br/arquivos/ids/12109069-200-200/1006574337.jpg?v=637142248039070000"
+              src="{{ book.fotoUrl }}"
               alt="teste" width="200" height="220"><br><br>
-            <a routerLink="/pages/book-detail/1" nbButton status="primary">Detalhes</a>
+            <a routerLink="/pages/book-detail/{{ book.id }}" nbButton status="primary">Detalhes</a>
           </nb-card-body>
         </nb-card>
+    
+
       </div>
     </nb-tab>
+
     <nb-tab tabTitle="Todos" class="animated fadeInUp">
       <div class="row">
-        <nb-card status="primary">
-          <nb-card-header>Book of life</nb-card-header>
-          <nb-card-body>
-            <img
-              src="https://lojasaraiva.vteximg.com.br/arquivos/ids/12109069-200-200/1006574337.jpg?v=637142248039070000"
-              alt="teste" width="200" height="220"><br><br>
-            <a routerLink="/pages/book-detail/1" nbButton status="primary">Detalhes</a>
-          </nb-card-body>
-        </nb-card>
+        
+        <div *ngFor="let book of allBooks">
+          
+          <nb-card status="danger" *ngIf="book.emprestado" >
+            <nb-card-header>{{ book.titulo.substring(0, 25) }}...</nb-card-header>
+            <nb-card-body>
+              <img
+                src="{{ book.fotoUrl }}"
+                alt="teste" width="200" height="220"><br><br>
+              <a routerLink="/pages/book-detail/{{ book.id }}" nbButton status="danger">Detalhes</a>
+            </nb-card-body>
+          </nb-card>
+
+          <nb-card status="success" *ngIf="!book.emprestado" >
+            <nb-card-header>{{ book.titulo.substring(0, 25) }}...</nb-card-header>
+            <nb-card-body>
+              <img
+                src="{{ book.fotoUrl }}"
+                alt="teste" width="200" height="220"><br><br>
+              <a routerLink="/pages/book-detail/{{ book.id }}" nbButton status="success">Detalhes</a>
+            </nb-card-body>
+          </nb-card>
+
+        </div>
+        
       </div>
     </nb-tab>
   </nb-tabset>
