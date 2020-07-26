@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NbToastrService } from '@nebular/theme';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'ngx-loans-detail',
@@ -24,6 +25,7 @@ export class LoansDetailComponent implements OnInit {
     private loanService: LoansService,
     private bookService: BooksService,
     private toastrService: NbToastrService,
+    private location: Location,
     private fb: FormBuilder) {
 
     this.form = this.fb.group({
@@ -108,6 +110,9 @@ export class LoansDetailComponent implements OnInit {
         });
   }
 
+  goBack() {
+    this.location.back();
+  }
 
   showToast(status, title) {
     this.toastrService.show(null,

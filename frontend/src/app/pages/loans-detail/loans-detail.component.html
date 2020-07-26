@@ -1,5 +1,10 @@
 <div *ngIf="!busy" class="container animated fadeInRight">
   <nb-card>
+    <a id="back" (click)="goBack()" class="text-primary">
+      <span style="font-size: 1.5em">
+        <i class="fas fa-arrow-left"></i>
+      </span>
+    </a>
     <nb-card-header>
       {{ book.titulo }}
     </nb-card-header>

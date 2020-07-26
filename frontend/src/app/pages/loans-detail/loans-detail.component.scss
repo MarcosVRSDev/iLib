@@ -31,3 +31,11 @@ a {
   margin: 0 auto 2rem;
   margin-bottom: 5px;
 }
+
+#back {
+  position: fixed;
+  z-index: 10;
+  margin-top: 20px;
+  margin-left: 15px;
+  cursor: pointer;
+}
