@@ -21,7 +21,7 @@ export class LoansService {
 
   getLoansByBookId(id: number) {
     return this.http.get<Loans>(`${this.api}/livros/${id}`)
-  } 
+  }
 
   getLoansByStatusId(id: number) {
     return this.http.get<Loans[]>(`${this.api}/status/${id}`)
@@ -29,25 +29,25 @@ export class LoansService {
   }
 
   createLoans(loan: Loans) {
-    return this.http.post<Loans[]>(`${this.api}/`, loan);
+    return this.http.post<Loans>(`${this.api}/`, loan);
   }
 
   updateLoans(loan: Loans) {
-    return this.http.put<Loans[]>(`${this.api}/`, loan);
+    return this.http.put<Loans>(`${this.api}/`, loan);
   }
 
   cancelLoans(id: number) {
-    return this.http.put<Loans[]>(`${this.api}/cancelar/${id}`, null);
+    return this.http.put<Loans>(`${this.api}/cancelar/${id}`, null);
   }
 
   confirmLoans(id: number) {
-    return this.http.put<Loans[]>(`${this.api}/confirmar/${id}`, null);
+    return this.http.put<Loans>(`${this.api}/confirmar/${id}`, null);
   }
 
-  giveBackLoans(id: number) {
-    return this.http.put<Loans[]>(`${this.api}/devolver/${id}`, null);
+  giveBackLoansBook(id: number) {
+    return this.http.put<Loans>(`${this.api}/devolver/${id}`, null);
   }
 
 
-  
+
 }
