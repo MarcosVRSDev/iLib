@@ -2,10 +2,8 @@
 using ILib.Dominio.Enums;
 using ILib.Dominio.Repositorio;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ILib.Infra.Repositorio
@@ -41,6 +39,16 @@ namespace ILib.Infra.Repositorio
         public async Task<Emprestimo> SelecionarPorId(int idEmprestimo)
         {
             return await _contexto.Emprestimos.AsNoTracking().FirstOrDefaultAsync(x => x.Id == idEmprestimo);
+        }
+
+        public async Task<Emprestimo> SelecionarPorLivroIdEmprestado(int livro)
+        {
+            return await _contexto.Emprestimos.AsNoTracking()
+                .FirstOrDefaultAsync(
+                x => x.LivroId == livro && (
+                x.Status == EStatusEmprestimo.EMPRESTADO ||
+                x.Status == EStatusEmprestimo.PENDENTE
+                ));
         }
 
         public async Task<ICollection<Emprestimo>> SelecionarPorStatus(EStatusEmprestimo eStatus)

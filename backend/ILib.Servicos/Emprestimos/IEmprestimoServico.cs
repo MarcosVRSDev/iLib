@@ -14,6 +14,7 @@ namespace ILib.Servicos.Emprestimos
         Task<EmprestimoViewModel> ConfirmaEmprestimo(EmprestimoViewModel emprestimo);
         Task<EmprestimoViewModel> CancelaEmprestimo(EmprestimoViewModel emprestimo);
         Task<EmprestimoViewModel> RealizaDevolucao(EmprestimoViewModel emprestimo);
+        Task<EmprestimoViewModel> SelecionarPorLivroEmprestado(int livroId);
         bool Sucesso();
         List<string> Erros { get; }
 

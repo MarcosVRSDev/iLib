@@ -192,5 +192,11 @@ namespace ILib.Servicos.Emprestimos
             var objs = await _emprestimoRepositorio.SelecionarTodos();
             return objs.Select(emprestimo => _mapper.Map<EmprestimoViewModel>(emprestimo)).ToList();
         }
+
+        public async Task<EmprestimoViewModel> SelecionarPorLivroEmprestado(int livroId)
+        {
+            var obj = await _emprestimoRepositorio.SelecionarPorLivroIdEmprestado(livroId);
+            return _mapper.Map<EmprestimoViewModel>(obj);
+        }
     }
 }

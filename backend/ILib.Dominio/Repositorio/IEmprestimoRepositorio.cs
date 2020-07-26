@@ -12,6 +12,7 @@ namespace ILib.Dominio.Repositorio
         Task<Emprestimo> Editar(Emprestimo emprestimo);
         Task<ICollection<Emprestimo>> SelecionarTodos();
         Task<Emprestimo> SelecionarPorId(int emprestimo);
+        Task<Emprestimo> SelecionarPorLivroIdEmprestado(int livro);
         Task<ICollection<Emprestimo>> SelecionarPorStatus(EStatusEmprestimo eStatus);
 
     }

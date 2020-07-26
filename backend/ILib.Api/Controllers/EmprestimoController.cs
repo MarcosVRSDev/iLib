@@ -18,7 +18,7 @@ namespace ILib.Api.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<IActionResult> SelecionaTodos([FromBody] EmprestimoViewModel emprestimoViewModel)
+        public async Task<IActionResult> SelecionaTodos()
         {
             return Ok(await _emprestimoServico.SelecionarTodos());
         }
@@ -40,6 +40,14 @@ namespace ILib.Api.Controllers
                 return Ok(emprestimos);
             }
             return BadRequest(_emprestimoServico.Erros);
+        }
+
+        [HttpGet]
+        [Route("livro/{id:int}")]
+        public async Task<IActionResult> SelecionarPorLivroIdEmprestado(int id)
+        {
+            return Ok(await _emprestimoServico.SelecionarPorLivroEmprestado(id));
+
         }
 
 
