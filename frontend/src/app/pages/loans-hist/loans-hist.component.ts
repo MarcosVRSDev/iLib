@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './loans-hist.component.html',
 })
 export class LoansHistComponent implements OnInit {
-  private loans: Loans[];
+  public loans: Loans[];
 
   constructor(private router: Router, private loanService: LoansService) { }
 

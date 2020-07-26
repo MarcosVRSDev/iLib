@@ -20,7 +20,7 @@ export class LoansService {
   }
 
   getLoansByBookId(id: number) {
-    return this.http.get<Loans>(`${this.api}/livros/${id}`)
+    return this.http.get<Loans>(`${this.api}/livro/${id}`)
   }
 
   getLoansByStatusId(id: number) {

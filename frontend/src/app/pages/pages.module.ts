@@ -1,3 +1,4 @@
+import { BookUpdateModule } from './book-update/book-update.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { NbMenuModule, NbButtonModule, NbTabsetModule, NbIconModule, NbListModule, NbBadgeModule, NbInputModule } from '@nebular/theme';
@@ -27,7 +28,8 @@ import { RouterModule } from '@angular/router';
     NbIconModule,
     NbBadgeModule,
     NbInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BookUpdateModule,
   ],
   declarations: [
     PagesComponent,

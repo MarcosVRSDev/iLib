@@ -5,7 +5,7 @@
         
         
         <nb-card status="primary" class="animated fadeInUp" *ngFor="let book of availableBooks">
-          <nb-card-header>{{ book.titulo.substring(0, 25) }}...</nb-card-header>
+          <nb-card-header>{{ book.titulo.substring(0, 20) }}...</nb-card-header>
           <nb-card-body>
             <img
               src="{{ book.fotoUrl }}"
@@ -24,7 +24,7 @@
         <div *ngFor="let book of allBooks">
           
           <nb-card status="danger" *ngIf="book.emprestado" >
-            <nb-card-header>{{ book.titulo.substring(0, 25) }}...</nb-card-header>
+            <nb-card-header>{{ book.titulo.substring(0, 20) }}...</nb-card-header>
             <nb-card-body>
               <img
                 src="{{ book.fotoUrl }}"
@@ -34,7 +34,7 @@
           </nb-card>
 
           <nb-card status="success" *ngIf="!book.emprestado" >
-            <nb-card-header>{{ book.titulo.substring(0, 25) }}...</nb-card-header>
+            <nb-card-header>{{ book.titulo.substring(0, 20) }}...</nb-card-header>
             <nb-card-body>
               <img
                 src="{{ book.fotoUrl }}"

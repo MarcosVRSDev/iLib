@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
-import { NbToastrService } from '@nebular/theme';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-dialog-prompt',
@@ -10,22 +8,16 @@ import { Router } from '@angular/router';
 })
 export class DialogPromptComponent {
 
-  constructor(protected ref: NbDialogRef<DialogPromptComponent>,
-    private toastrService: NbToastrService,
-    private router: Router) { }
+  @Input() title: string;
+  @Input() description: string;
 
-  showToast(status) {
-    this.toastrService.show("Sua solicitação foi criada com sucesso!",
-      `Solicitação de emprestímo`, { status });
-  }
+  constructor(private ref: NbDialogRef<DialogPromptComponent>) { }
 
   cancel() {
     this.ref.close();
   }
 
-  submit(status) {
-    this.ref.close();
-    this.showToast(status);
-    this.router.navigateByUrl('/');
+  submit() {
+      this.ref.close(true);
   }
 }

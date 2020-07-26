@@ -4,6 +4,7 @@ nb-card {
   width: 70vw;
   text-align: center;
 }
+
 button {
   width: 30vw;
 }
@@ -15,3 +16,15 @@ a {
   margin-left: 10px;
 }
 
+nb-list, nb-list-item {
+  margin: 0 auto;
+  text-align: left;
+}
+
+nb-list-item {
+  display: block;
+}
+
+i, strong, small {
+  padding-right: 5px;
+}
