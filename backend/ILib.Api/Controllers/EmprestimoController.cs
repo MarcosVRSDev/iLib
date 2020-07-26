@@ -76,10 +76,10 @@ namespace ILib.Api.Controllers
         }
 
         [HttpPut]
-        [Route("cancelar/{id:int}")]
-        public async Task<IActionResult> CancelarEmprestimo(int id)
+        [Route("cancelar")]
+        public async Task<IActionResult> CancelarEmprestimo([FromBody] EmprestimoViewModel emprestimoViewModel)
         {
-            var emprestimo = await _emprestimoServico.CancelaEmprestimo(new EmprestimoViewModel { Id = id});
+            var emprestimo = await _emprestimoServico.CancelaEmprestimo(emprestimoViewModel);
             if (_emprestimoServico.Sucesso())
             {
                 return Ok(emprestimo);
@@ -88,10 +88,10 @@ namespace ILib.Api.Controllers
         }
 
         [HttpPut]
-        [Route("confirmar/{id:int}")]
-        public async Task<IActionResult> ConfirmarEmprestimo(int id)
+        [Route("confirmar")]
+        public async Task<IActionResult> ConfirmarEmprestimo([FromBody] EmprestimoViewModel emprestimoViewModel)
         {
-            var emprestimo = await _emprestimoServico.ConfirmaEmprestimo(new EmprestimoViewModel { Id = id });
+            var emprestimo = await _emprestimoServico.ConfirmaEmprestimo(emprestimoViewModel);
             if (_emprestimoServico.Sucesso())
             {
                 return Ok(emprestimo);
@@ -100,10 +100,10 @@ namespace ILib.Api.Controllers
         }
 
         [HttpPut]
-        [Route("devolver/{id:int}")]
-        public async Task<IActionResult> RealizaDevolucao(int id)
+        [Route("devolver")]
+        public async Task<IActionResult> RealizaDevolucao([FromBody] EmprestimoViewModel emprestimoViewModel)
         {
-            var emprestimo = await _emprestimoServico.RealizaDevolucao(new EmprestimoViewModel { Id = id });
+            var emprestimo = await _emprestimoServico.RealizaDevolucao(emprestimoViewModel);
             if (_emprestimoServico.Sucesso())
             {
                 return Ok(emprestimo);

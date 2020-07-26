@@ -90,7 +90,8 @@ namespace ILib.Servicos.Emprestimos
                 
                 obj.DataEmprestimo = DateTime.Now;
                 obj.Status = EStatusEmprestimo.EMPRESTADO;
-                obj.DataPrevDevolucao = emprestimo.DataDevolucao != null ? emprestimo.DataDevolucao : DateTime.Now.AddDays(30);
+                obj.DataPrevDevolucao = emprestimo.DataDevolucao != null ? emprestimo.DataDevolucao: DateTime.Now.AddDays(30);
+                obj.Observacao = emprestimo.Observacao != null ? emprestimo.Observacao : obj.Observacao;
 
                 await _emprestimoRepositorio.Editar(obj);
 
@@ -151,8 +152,8 @@ namespace ILib.Servicos.Emprestimos
                 var obj = await _emprestimoRepositorio.SelecionarPorId(emprestimo.Id);
 
                 obj.DataDevolucao = DateTime.Now;
+                obj.Status = EStatusEmprestimo.DEVOLVIDO;
 
-               
 
                 obj = await _emprestimoRepositorio.Editar(obj);
                 _ = _livroServico.Devolver(obj.LivroId);
