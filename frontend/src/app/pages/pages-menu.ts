@@ -17,7 +17,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Editar Livros',
-        link: '/pages/list-book',
+        link: '/pages/books',
       },
       {
         title: 'Empréstimos',

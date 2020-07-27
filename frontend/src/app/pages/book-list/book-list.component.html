@@ -1,0 +1,51 @@
+<div class="container animated fadeInUp">
+    <nb-card status="primary">
+      <nb-card-header>
+        Editar Livros
+      </nb-card-header>
+      <nb-list>
+        <nb-list-item class="clickable" *ngFor="let book of books">
+          <div class="container block">
+            <label>
+              <i class="fab fa-buffer text-primary"></i>
+              <strong class="text-primary">Codigo: {{ book.id }}</strong><br>
+
+              <i class="fas fa-book"></i>
+              <strong id="user" class="label text-hint"> Livro: {{ book.titulo }}</strong><br>
+
+              <i class="fas fa-info-circle"></i>
+              <strong id="user" class="label text-hint"> Autor: {{ book.autor }}</strong><br>
+
+              <i class="fas fa-info-circle"></i>
+              <strong id="user" class="label text-hint"> Editora: {{ book.editora }}</strong><br>
+              
+              <strong class="text-success" *ngIf="book.estado == 0">
+              <i class="fas fa-info-circle text-success"></i>Qualidade física do livro: Bom
+              </strong>
+
+              <strong class="text-warning" *ngIf="book.estado == 1">
+                <i class="fas fa-info-circle text-warning"></i>Qualidade física do livro: Regular
+              </strong>
+
+              <strong class="text-danger" *ngIf="book.estado == 2">
+                <i class="fas fa-info-circle text-danger"></i>Qualidade física do livro: Ruim
+              </strong><br>
+
+              <strong class="text-danger" *ngIf="book.emprestado">
+                <i class="fas fa-info-circle text-danger"></i>Não é possível editar um livro emprestado.
+              </strong>
+              
+              <br>
+              
+              <strong class="text-info" *ngIf="!book.emprestado">
+                <a nbTooltip="Editar Livro." size="small" nbTooltipStatus="success" nbButton status="info" routerLink="/pages/update-book/{{book.id}}">
+                <i class="far fa-edit"></i>Editar</a>
+              </strong>
+              
+            
+            </label>
+          </div>
+        </nb-list-item>
+      </nb-list>
+    </nb-card>
+  </div>

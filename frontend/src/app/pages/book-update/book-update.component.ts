@@ -76,8 +76,8 @@ export class BookUpdateComponent implements OnInit {
     this.busy = true;
     this.bookService.editBook(this.form.value)
       .subscribe((book) => {
-        this.router.navigate(['pages/home'])
-        
+        this.router.navigate(['pages/books'])
+        this.showToast('success', 'Livro atualizado com sucesso')
         this.busy = false;
       },
       () => {

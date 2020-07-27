@@ -12,10 +12,12 @@
       <nb-card-body>
         <img src="{{ book.fotoUrl }}"
           alt="teste" width="250" height="300"><br><br>
-        <P><small><strong>{{ book.codigo }}</strong></small></P>
-        <p>{{ book.observacoes }}
-        </p><br>
+        <p><small><strong>{{ book.codigo }}</strong></small></p>
+        <strong><label>Autor: </label></strong><label>{{ book.autor }}</label><br>
+        <strong><label>Editora: </label></strong><label>{{ book.editora }}</label><br>
+        <strong><label>Resumo: </label></strong><label>{{ book.observacoes }}</label>
         
+        <br><br>
         <button *ngIf="!book.emprestado" nbButton outline status="primary" (click)="open()">Quero ler!</button>
 
 

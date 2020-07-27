@@ -11,6 +11,7 @@ import { LoansDetailModule } from './loans-detail/loans-detail.module';
 import { BookDetailModule } from './book-detail/book-detail.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { RouterModule } from '@angular/router';
+import { BookListModule } from './book-list/book-list.module';
 
 @NgModule({
   imports: [
@@ -30,9 +31,10 @@ import { RouterModule } from '@angular/router';
     NbInputModule,
     ReactiveFormsModule,
     BookUpdateModule,
+    BookListModule,
   ],
   declarations: [
-    PagesComponent,
+    PagesComponent
   ],
 })
 export class PagesModule {
