@@ -23,15 +23,15 @@ namespace ILib.Servicos.Livros.Validadores.Edicao
                         .NotNull()
                         .WithMessage("É necessário informar o ID para editar um livro.");
 
-                    RuleFor(x => x.Id).MustAsync(async (id, cancellation) =>
+                    RuleFor(x => x.Id).Cascade(CascadeMode.StopOnFirstFailure)
+                    .MustAsync(async (id, cancellation) =>
                     {
                         var livroExistente = await _livroRepositorio.SelecionarPorId(id);
                         if (livroExistente != null)
                             return true;
                         return false;
-                    }).WithMessage("Esse livro não existe na aplicação. Tente informar um outro ID.");
-
-                    RuleFor(x => x.Id).MustAsync(async (id, cancellation) =>
+                    }).WithMessage("Esse livro não existe na aplicação. Tente informar um outro ID.")
+                    .MustAsync(async (id, cancellation) =>
                     {
                         var livroDisponivel = await _livroRepositorio.SelecionarPorId(id);
                         if (livroDisponivel.Emprestado == false)
