@@ -38,12 +38,17 @@ namespace ILib.Infra.Repositorio
 
         public async Task<Emprestimo> SelecionarPorId(int idEmprestimo)
         {
-            return await _contexto.Emprestimos.AsNoTracking().FirstOrDefaultAsync(x => x.Id == idEmprestimo);
+            return await _contexto.Emprestimos
+                .AsNoTracking()
+                .Include(x => x.Livro)
+                .FirstOrDefaultAsync(x => x.Id == idEmprestimo);
         }
 
         public async Task<Emprestimo> SelecionarPorLivroIdEmprestado(int livro)
         {
-            return await _contexto.Emprestimos.AsNoTracking()
+            return await _contexto.Emprestimos
+                .AsNoTracking()
+                .Include(x => x.Livro)
                 .FirstOrDefaultAsync(
                 x => x.LivroId == livro && (
                 x.Status == EStatusEmprestimo.EMPRESTADO ||
@@ -53,12 +58,19 @@ namespace ILib.Infra.Repositorio
 
         public async Task<ICollection<Emprestimo>> SelecionarPorStatus(EStatusEmprestimo eStatus)
         {
-            return await _contexto.Emprestimos.AsNoTracking().Where(x => x.Status == eStatus).ToListAsync();
+            return await _contexto.Emprestimos
+                .AsNoTracking()
+                .Include(x => x.Livro)
+                .Where(x => x.Status == eStatus)
+                .ToListAsync();
         }
 
         public async Task<ICollection<Emprestimo>> SelecionarTodos()
         {
-            return await _contexto.Emprestimos.AsNoTracking().ToListAsync();
+            return await _contexto.Emprestimos
+                .AsNoTracking()
+                .Include(x => x.Livro)
+                .ToListAsync();
         }
     }
 }
