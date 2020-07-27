@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="busy">
   <div class="row">
     <nb-card accent="info" class="animated fadeInRight">
       <a routerLink="/">
@@ -12,11 +12,34 @@
       <nb-card-body>
         <img src="{{ book.fotoUrl }}"
           alt="teste" width="250" height="300"><br><br>
-        <P><small><strong>{{ book.codigo }}</strong></small></P>
-        <p>{{ book.observacoes }}
-        </p><br>
-        <button nbButton outline status="primary" (click)="open()">Quero ler!</button>
+        <p><small><strong>{{ book.codigo }}</strong></small></p>
+        <strong><label>Autor: </label></strong><label>{{ book.autor }}</label><br>
+        <strong><label>Editora: </label></strong><label>{{ book.editora }}</label><br>
+        <strong><label>Resumo: </label></strong><label>{{ book.observacoes }}</label>
+        
+        <br><br>
+        <button *ngIf="!book.emprestado" nbButton outline status="primary" (click)="open()">Quero ler!</button>
+
+
+        <nb-list *ngIf="book.emprestado">
+          <nb-list-item>
+            <i class="far fa-calendar-plus"></i>
+            <strong><label>Data da
+                solicitação:</label></strong><label>{{ loan.dataEmprestimo  | date: 'dd/MM/yyyy'}}</label><br>
+            <i class="far fa-calendar-minus"></i>
+            <strong><label>Data Prev.
+                Devolução:</label></strong><label>{{ loan.dataPrevDevolucao | date: 'dd/MM/yyyy' }}</label><br>
+            <i class="far fa-user-circle"></i>
+            <strong><label>Usuário:</label></strong><label> {{ loan.usuarioId }}</label><br>
+
+              <i class="fas fa-info-circle text-warning"></i>
+              <strong class="text-warning"><label>  Emprestado</label></strong>
+            
+          </nb-list-item>
+          </nb-list>
+
       </nb-card-body>
     </nb-card>
+
   </div>
 </div>

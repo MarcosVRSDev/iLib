@@ -1,12 +1,12 @@
 <div class="container animated fadeInUp">
     <nb-card accent="info" [nbSpinner]="busy" nbSpinnerSize="giant" nbSpinnerStatus="primary">
-      <a routerLink="/">
+      <a routerLink="/pages/books">
         <span style="font-size: 1.5em">
           <i class="fas fa-arrow-left"></i>
         </span>
       </a>
         <nb-card-header>
-          Cadastrar Livro
+          Editar Livro
         </nb-card-header>
         <nb-list>
           <nb-list-item>
@@ -15,7 +15,7 @@
                     <label class="label col-sm-3 col-form-label">Título:</label>
                     <div class="col-sm-9">
                     <input nbInput fullWidth placeholder="Titulo do Livro" formControlName="titulo" type="text"
-                    [ngClass] = "{'status-danger': (form.controls.titulo.invalid && !form.controls.titulo.pristine)}">
+                    >
                     </div>
                     
                     <br/>
@@ -25,8 +25,8 @@
                     <label class="label col-sm-3 col-form-label">Selecionar foto da capa:</label>
                     <div class="col-sm-9">
                         <button nbButton>
-                            <input formControlName="fotoUrl" type="file"
-                            [ngClass] = "{'status-danger': (form.controls.titulo.invalid && !form.controls.titulo.pristine)}">
+                            <input formControlName="novaFotoUrl" type="file"
+                            >
                           </button>
                     </div>
 
@@ -38,7 +38,7 @@
                     <label class="label col-sm-3 col-form-label">Autor:</label>
                     <div class="col-sm-9">
                     <input nbInput fullWidth placeholder="Autor do Livro" formControlName="autor" type="text"
-                    [ngClass] = "{'status-danger': (form.controls.autor.invalid && !form.controls.autor.pristine)}">
+                    >
                     </div>
 
                     <br/>
@@ -48,7 +48,7 @@
                     <label class="label col-sm-3 col-form-label">Editora:</label>
                     <div class="col-sm-9">
                     <input nbInput fullWidth placeholder="Editora do Livro" formControlName="editora" type="text"
-                    [ngClass] = "{'status-danger': (form.controls.editora.invalid && !form.controls.editora.pristine)}">
+                   >
                     </div>
 
                     <br/>
@@ -58,7 +58,7 @@
                     <label class="label col-sm-3 col-form-label">Código:</label>
                     <div class="col-sm-9">
                     <input nbInput fullWidth placeholder="Código do Livro" formControlName="codigo" type="text"
-                    [ngClass] = "{'status-danger': (form.controls.codigo.invalid && !form.controls.codigo.pristine)}">
+                    >
                     </div>
 
                     <br/>
@@ -68,7 +68,7 @@
                     <label class="label col-sm-3 col-form-label">Descrição:</label>
                     <div class="col-sm-9">
                     <textarea formControlName="observacoes" rows="5" nbInput fullWidth placeholder="Resumo do livro"
-                    [ngClass] = "{'status-danger': (form.controls.observacoes.invalid && !form.controls.observacoes.pristine)}"></textarea>
+                    ></textarea>
                     </div>
 
 
@@ -76,9 +76,9 @@
                     <label class="label col-sm-3 col-form-label">Estado físico do Livro:</label>
                     <div class="col-sm-9">
                         <nb-radio-group formControlName="estado">
-                            <nb-radio checked value=0> Bom </nb-radio>
-                            <nb-radio value=1> Regular </nb-radio>
-                            <nb-radio value=2> Ruim </nb-radio>
+                            <nb-radio [checked]="form.controls.estado.value === 0" value=0> Bom </nb-radio>
+                            <nb-radio [checked]="form.controls.estado.value === 1" value=1> Regular </nb-radio>
+                            <nb-radio [checked]="form.controls.estado.value === 2" value=2> Ruim </nb-radio>
                         </nb-radio-group>
                     </div>
                
@@ -87,7 +87,7 @@
               
               
               <div class="form-group row">
-                <button nbTooltip="Cadastrar Livro." nbTooltipStatus="success" nbButton status="success" (click)="submit()" [disabled]="form.invalid">Cadastrar</button>
+                <button nbTooltip="Salvar Livro." nbTooltipStatus="success" nbButton status="success" (click)="submit()" [disabled]="form.invalid">Salvar</button>
               </div>
             
             </form>

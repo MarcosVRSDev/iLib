@@ -1,3 +1,4 @@
+import { BookUpdateModule } from './book-update/book-update.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { NbMenuModule, NbButtonModule, NbTabsetModule, NbIconModule, NbListModule, NbBadgeModule, NbInputModule } from '@nebular/theme';
@@ -10,6 +11,7 @@ import { LoansDetailModule } from './loans-detail/loans-detail.module';
 import { BookDetailModule } from './book-detail/book-detail.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { RouterModule } from '@angular/router';
+import { BookListModule } from './book-list/book-list.module';
 
 @NgModule({
   imports: [
@@ -27,10 +29,12 @@ import { RouterModule } from '@angular/router';
     NbIconModule,
     NbBadgeModule,
     NbInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BookUpdateModule,
+    BookListModule,
   ],
   declarations: [
-    PagesComponent,
+    PagesComponent
   ],
 })
 export class PagesModule {

@@ -1,10 +1,10 @@
 export interface Loans {
-  id: number,
+  id?: number,
   livroId: number,
   usuarioId: string,
-  dataEmprestimo: Date,
-  dataPrevDevolucao: Date,
-  dataDevolucao: Date,
-  observacao: string,
-  status: number
+  dataEmprestimo?: Date,
+  dataPrevDevolucao?: Date,
+  dataDevolucao?: Date,
+  observacao?: string,
+  status?: number
 }
