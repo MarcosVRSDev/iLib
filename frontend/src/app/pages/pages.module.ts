@@ -34,14 +34,7 @@ import { BookListModule } from './book-list/book-list.module';
     NbInputModule,
     ReactiveFormsModule,
     BookUpdateModule,
-    BookListModule,
-    AngularFireModule.initializeApp({
-      apiKey: environment.firebase.apiKey,
-      authDomain: environment.firebase.authDomain,
-      storageBucket: environment.firebase.storageBucket,
-      projectId: environment.firebase.projectId,
-    }),
-    AngularFireStorageModule
+    BookListModule
   ],
   declarations: [
     PagesComponent

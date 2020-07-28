@@ -1,9 +1,9 @@
+import { UploadFirebaseService } from './../../services/upload-firabse.service';
 import { Router } from '@angular/router';
 import { BooksService } from './../../services/books.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { NbToastrService } from '@nebular/theme';
-import { AngularFireStorage, AngularFireStorageReference } from 'angularfire2/storage';
 
 @Component({
   selector: 'ngx-book-create',
@@ -14,15 +14,13 @@ export class BookCreateComponent implements OnInit {
 
   public form: FormGroup;
   public busy = false;
-  private ref: AngularFireStorageReference;
-  private imageRandomId = `${new Date().getTime()}_${Math.random().toString(36).substring(2)}`;
 
   constructor(
     private fb: FormBuilder, 
     private booksService:  BooksService, 
     private router: Router,
     private toastrService: NbToastrService,
-    private afStorage: AngularFireStorage
+    public ufService: UploadFirebaseService
     ) {
     this.form = this.fb.group({
       titulo: ["", Validators.compose([
@@ -60,29 +58,22 @@ export class BookCreateComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   submit() {
     this.busy = true;
-    
-    this.form.value.estado = parseInt(this.form.value.estado);
 
-    
+    this.ufService.uploadFile().then(() => {
+      this.ufService.getUrl().subscribe((url) => {
+        this.form.value.estado = parseInt(this.form.value.estado);
+        this.form.value.fotoUrl = url;
 
-    this.ref.getDownloadURL().subscribe((ref) => {
-      this.form.value.fotoUrl = ref;
-      this.booksService.createBook(this.form.value)
-      .subscribe((book) => {
-        this.router.navigate(['pages/home'])
-        this.showToast('success', 'Livro cadastrado com sucesso');
-        this.busy = false;
-      },
-      () => {
-        this.showToast('danger', 'Não foi possível comunicar com o servidor')
-        this.busy = false;
+        this.booksService.createBook(this.form.value)
+          .subscribe(() => {
+            this.router.navigate(['pages/home'])
+            this.showToast('success', 'Livro cadastrado com sucesso');
+            this.busy = false;
+          });
       })
-    
     });
-    
   }
 
   showToast(status, message) {
@@ -91,8 +82,6 @@ export class BookCreateComponent implements OnInit {
   }
 
   upload(event) {
-    this.ref = this.afStorage.ref(this.imageRandomId);
-    this.ref.put(event.target.files[0]);  
+    this.ufService.handleFiles(event);  
   }
-
 }
