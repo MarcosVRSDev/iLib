@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Books } from '../../models/books.model';
 import { NbToastrService } from '@nebular/theme';
+import { AngularFireStorageReference, AngularFireStorage } from 'angularfire2/storage';
 
 @Component({
   selector: 'ngx-book-update',
@@ -14,15 +15,17 @@ export class BookUpdateComponent implements OnInit {
 
   public form: FormGroup;
   public busy = false;
-  public book: Books;
   public id: number = parseInt(this.activateRouter.snapshot.paramMap.get("id"));
+  private ref: AngularFireStorageReference;
+  private imageRandomId = `${new Date().getTime()}_${Math.random().toString(36).substring(2)}`;
 
   constructor(
     private fb: FormBuilder, 
     private bookService: BooksService, 
     private router: Router,
     private activateRouter: ActivatedRoute,
-    private toastrService: NbToastrService
+    private toastrService: NbToastrService,
+    private afStorage: AngularFireStorage
     ) {
   
       this.form = this.fb.group({
@@ -52,6 +55,7 @@ export class BookUpdateComponent implements OnInit {
           Validators.required
         ])],
         novaFotoUrl: [""],
+        fotoUrl: [""],
         estado: ["", Validators.required]
       })
 
@@ -66,17 +70,31 @@ export class BookUpdateComponent implements OnInit {
   }
 
   submit() {
+    this.busy = true;
     this.form.value.estado = parseInt(this.form.value.estado);
-    this.form.value.fotoUrl = "https://images-na.ssl-images-amazon.com/images/I/41J78Xa7FYL._SX379_BO1,204,203,200_.jpg";
-    
-  
-    
     this.form.value.id = this.id;
 
-    this.busy = true;
-    this.bookService.editBook(this.form.value)
+
+    console.log(this.form.value);
+
+    if (this.form.value.novaFotoUrl != "") {
+      this.ref.getDownloadURL().subscribe((ref) => {
+        this.form.value.fotoUrl = ref;
+        this.bookService.editBook(this.form.value)
+        .subscribe((book) => {
+          this.router.navigate(['pages/books'])
+          this.showToast('success', 'Livro atualizado com sucesso')
+          this.busy = false;
+        },
+        () => {
+          this.showToast('danger', 'Não foi possível comunicar com o servidor')
+          this.busy = false;
+        })
+      });
+    } else {
+      this.bookService.editBook(this.form.value)
       .subscribe((book) => {
-        this.router.navigate(['pages/books'])
+        this.router.navigate(['pages/books']);
         this.showToast('success', 'Livro atualizado com sucesso')
         this.busy = false;
       },
@@ -84,6 +102,7 @@ export class BookUpdateComponent implements OnInit {
         this.showToast('danger', 'Não foi possível comunicar com o servidor')
         this.busy = false;
       })
+    }
   }
 
   showToast(status, message) {
@@ -91,4 +110,8 @@ export class BookUpdateComponent implements OnInit {
       message, { status });
   }
 
+  upload(event) {
+    this.ref = this.afStorage.ref(this.imageRandomId);
+    this.ref.put(event.target.files[0]);  
+  }
 }

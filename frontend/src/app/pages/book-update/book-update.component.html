@@ -25,9 +25,8 @@
                     <label class="label col-sm-3 col-form-label">Selecionar foto da capa:</label>
                     <div class="col-sm-9">
                         <button nbButton>
-                            <input formControlName="novaFotoUrl" type="file"
-                            >
-                          </button>
+                            <input formControlName="novaFotoUrl" type="file" (change)="upload($event)" accept=".png,.jpg" >
+                        </button>
                     </div>
 
                     <br/>

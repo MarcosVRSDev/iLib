@@ -3,6 +3,7 @@ import { BooksService } from './../../services/books.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { NbToastrService } from '@nebular/theme';
+import { AngularFireStorage, AngularFireStorageReference } from 'angularfire2/storage';
 
 @Component({
   selector: 'ngx-book-create',
@@ -13,12 +14,15 @@ export class BookCreateComponent implements OnInit {
 
   public form: FormGroup;
   public busy = false;
+  private ref: AngularFireStorageReference;
+  private imageRandomId = `${new Date().getTime()}_${Math.random().toString(36).substring(2)}`;
 
   constructor(
     private fb: FormBuilder, 
     private booksService:  BooksService, 
     private router: Router,
-    private toastrService: NbToastrService
+    private toastrService: NbToastrService,
+    private afStorage: AngularFireStorage
     ) {
     this.form = this.fb.group({
       titulo: ["", Validators.compose([
@@ -58,12 +62,15 @@ export class BookCreateComponent implements OnInit {
 
 
   submit() {
+    this.busy = true;
     
     this.form.value.estado = parseInt(this.form.value.estado);
-    this.form.value.fotoUrl = "https://images-na.ssl-images-amazon.com/images/I/41J78Xa7FYL._SX379_BO1,204,203,200_.jpg";
 
-    this.busy = true;
-    this.booksService.createBook(this.form.value)
+    
+
+    this.ref.getDownloadURL().subscribe((ref) => {
+      this.form.value.fotoUrl = ref;
+      this.booksService.createBook(this.form.value)
       .subscribe((book) => {
         this.router.navigate(['pages/home'])
         this.showToast('success', 'Livro cadastrado com sucesso');
@@ -73,11 +80,19 @@ export class BookCreateComponent implements OnInit {
         this.showToast('danger', 'Não foi possível comunicar com o servidor')
         this.busy = false;
       })
+    
+    });
+    
   }
 
   showToast(status, message) {
     this.toastrService.show(null,
       message, { status });
+  }
+
+  upload(event) {
+    this.ref = this.afStorage.ref(this.imageRandomId);
+    this.ref.put(event.target.files[0]);  
   }
 
 }

@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Books } from './../models/books.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -7,7 +8,8 @@ import { Injectable } from '@angular/core';
 })
 
 export class BooksService {
-  public api: string = 'https://localhost:44312/api/livros'
+  
+  private api: string = `${environment.api_url}/livros`;
 
   constructor(private http: HttpClient) { }
 

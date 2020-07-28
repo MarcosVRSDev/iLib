@@ -1,13 +1,15 @@
 import { Loans } from './../models/loans.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class LoansService {
-  public api: string = 'https://localhost:44312/api/emprestimos';
+  
+  private api: string = `${environment.api_url}/emprestimos`;
 
   constructor(private http: HttpClient) { }
 

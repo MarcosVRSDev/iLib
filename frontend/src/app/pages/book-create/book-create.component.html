@@ -25,7 +25,7 @@
                     <label class="label col-sm-3 col-form-label">Selecionar foto da capa:</label>
                     <div class="col-sm-9">
                         <button nbButton>
-                            <input formControlName="fotoUrl" type="file"
+                            <input formControlName="fotoUrl" type="file" (change)="upload($event)" accept=".png,.jpg"
                             [ngClass] = "{'status-danger': (form.controls.titulo.invalid && !form.controls.titulo.pristine)}">
                           </button>
                     </div>
