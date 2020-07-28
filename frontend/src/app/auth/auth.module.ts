@@ -5,6 +5,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
+import { environment } from '../../environments/environment';
+
 import { NgxAuthRoutingModule } from './auth-routing.module';
 import { NbAuthModule } from '@nebular/auth';
 import {
@@ -34,6 +39,8 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbEvaIconsModule,
 
     NbAuthModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
   ],
   declarations: [
   ],

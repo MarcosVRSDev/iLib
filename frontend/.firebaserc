@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "laender-7196": {
+      "hosting": {
+        "ngx-admin-demo": [
+          "laender-7196"
+        ]
+      }
+    }
+  }
+}

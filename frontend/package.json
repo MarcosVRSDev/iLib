@@ -35,6 +35,7 @@
     "@angular/common": "^9.0.4",
     "@angular/compiler": "^9.0.4",
     "@angular/core": "^9.0.4",
+    "@angular/fire": "^6.0.0-rc.2",
     "@angular/forms": "^9.0.4",
     "@angular/material": "^9.1.0",
     "@angular/platform-browser": "^9.0.4",
@@ -106,6 +107,11 @@
     "ts-node": "3.2.2",
     "tslint": "^5.7.0",
     "tslint-language-service": "^0.9.9",
-    "typescript": "3.7.5"
+    "typescript": "3.7.5",
+    "@angular-devkit/architect": "~0.900",
+    "firebase-tools": "^7.12.1",
+    "fuzzy": "^0.1.3",
+    "inquirer": "^6.2.2",
+    "inquirer-autocomplete-prompt": "^1.0.1"
   }
 }
