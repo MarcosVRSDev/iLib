@@ -1,0 +1,71 @@
+.background {
+  background-color: #7994fd;
+}
+
+.container {
+  border-radius: 1em;
+}
+
+nb-card {
+  background-color: #7994fd;
+  border: none;
+  border-radius: 0.8em;
+  box-shadow: 7px 13px 45px -2px rgba(0,0,0,0.75);
+  margin: 0 auto;
+  width: 70vw;
+  height: 500px;
+  
+}
+
+.column {
+  float: left;
+  width: 50%;
+  height: 500px;
+}
+
+.first {
+  border-radius: 0.8em 0 0 0.8em;
+  background-color: #fff;
+}
+
+.second {
+  border-radius:  0 0.8em 0.8em 0;
+  background-color: #eaeefa;
+  
+}
+
+.centered {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+#book {
+  width: 40vw;
+  height: 50vh;
+}
+
+.content {
+  display: block;
+  font-weight: bold;
+}
+
+#logo {
+  width: 150px;
+  height: 54px;
+  margin-top: 150px;
+}
+button {
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  height: 50px;
+  width: 250px;
+}
+
+button img {
+  height: 80%;
+  width: 20%;
+}
+
