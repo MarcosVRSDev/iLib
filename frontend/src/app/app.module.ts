@@ -20,9 +20,9 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
-import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({

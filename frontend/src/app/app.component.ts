@@ -5,6 +5,8 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { AnalyticsService } from './@core/utils/analytics.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-app',
@@ -12,10 +14,18 @@ import { AnalyticsService } from './@core/utils/analytics.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private analytics: AnalyticsService) {
+  constructor(
+    private analytics: AnalyticsService,
+    private afAuth: AngularFireAuth,
+    private router: Router
+  ) {
   }
 
   ngOnInit() {
     this.analytics.trackPageViews();
+
+    this.afAuth.onAuthStateChanged(data => {
+      console.log(data);
+    })
   }
 }

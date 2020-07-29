@@ -3,8 +3,6 @@ import { BookUpdateModule } from './book-update/book-update.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { NbMenuModule, NbButtonModule, NbTabsetModule, NbIconModule, NbListModule, NbBadgeModule, NbInputModule } from '@nebular/theme';
-import { AngularFireStorageModule } from 'angularfire2/storage';
-import { AngularFireModule } from 'angularfire2';
 
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
