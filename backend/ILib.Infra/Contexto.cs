@@ -8,6 +8,8 @@ namespace ILib.Infra
         public DbSet<Livro> Livros { get; set; }
         public DbSet<Emprestimo> Emprestimos { get; set; }
 
+        public DbSet<Usuario> Usuarios { get; set; }
+
         public Contexto(DbContextOptions<Contexto> options) : base(options)
         {
         }

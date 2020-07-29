@@ -25,7 +25,12 @@ export class AppComponent implements OnInit {
     this.analytics.trackPageViews();
 
     this.afAuth.onAuthStateChanged(data => {
-      console.log(data);
-    })
+      /*let email = data.email.split('@')[1]; && email == 'inovamobil.com.br'*/
+      if (data) {
+        this.router.navigateByUrl('/');
+      } else {
+        this.router.navigateByUrl('/auth/login');
+      }
+    });
   }
 }

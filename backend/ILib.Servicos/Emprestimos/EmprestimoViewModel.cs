@@ -1,12 +1,12 @@
-﻿using ILib.Dominio.Entidades;
+﻿using ILib.Core.DominioObjetos;
+using ILib.Dominio.Entidades;
 using ILib.Servicos.Livros;
 using System;
 
 namespace ILib.Servicos.Emprestimos
 {
-    public class EmprestimoViewModel
+    public class EmprestimoViewModel : ViewModel
     {
-        public int Id { get; set; }
         public int LivroId { get; set; }
         public LivroViewModel Livro { get; set; }
         public string UsuarioId { get; set; }

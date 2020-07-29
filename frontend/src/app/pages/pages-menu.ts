@@ -8,39 +8,47 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
+    title: 'Meus empréstimos',
+    icon: 'archive-outline',
+    children: [
+      {
+        title: 'Empréstimos',
+        link: '/pages/',
+      },
+    ]
+  },
+  {
     title: 'Gerenciamento',
     icon: 'settings-outline',
     children: [
       {
-        title: 'Cadastrar Livro',
-        link: '/pages/create-book',
-      },
-      {
-        title: 'Editar Livros',
-        link: '/pages/books',
+        title: 'Livros',
+        icon: 'book-outline',
+        children: [
+          {
+            title: 'Cadastrar Livro',
+            link: '/pages/create-book',
+          },
+          {
+            title: 'Editar Livros',
+            link: '/pages/books',
+          },
+        ],
       },
       {
         title: 'Empréstimos',
-        link: '/pages/loans',
+        icon: 'calendar-outline',
+        children: [
+          {
+            title: 'Empréstimos',
+            link: '/pages/loans',
+          },
+          {
+            title: 'Histórico',
+            link: '/pages/loans-hist',
+          }
+        ]
       },
-      {
-        title: 'Histórico',
-        link: '/pages/loans-hist',
-      }
-    ],
-  },
-  {
-    title: 'FEATURES',
-    group: true,
-  },
-  {
-    title: 'Auth',
-    icon: 'lock-outline',
-    children: [
-      {
-        title: 'Login',
-        link: '/auth/login',
-      }
     ],
   },
 ];

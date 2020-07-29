@@ -9,7 +9,7 @@ namespace ILib.Dominio.Entidades
         public int LivroId { get; set; }
         public Livro Livro { get; set; }
 
-        public string UsuarioId { get; set; }
+        public int UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
 
         public DateTime DataEmprestimo { get; set; }

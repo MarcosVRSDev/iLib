@@ -34,15 +34,17 @@ namespace ILib.Api
 
             });
 
-            services.AddEntityFrameworkNpgsql();
-            services.AddDbContext<Contexto>(options => options.UseNpgsql(Configuration.GetConnectionString("ContextoDB")));
+            //services.AddEntityFrameworkNpgsql();
+            //services.AddDbContext<Contexto>(options => options.UseNpgsql(Configuration.GetConnectionString("ContextoDB")));
 
-            //services.AddDbContext<Contexto>(opt => opt.UseInMemoryDatabase("Database"));
+            services.AddDbContext<Contexto>(opt => opt.UseInMemoryDatabase("Database"));
+
             services.AddControllers();
 
             services.AddServicos();
             services.AddTransient<ILivroRepositorio, LivroRepositorio>();
             services.AddTransient<IEmprestimoRepositorio, EmprestimoRepositorio>();
+            services.AddTransient<IUsuarioRepositorio, UsuarioRepositorio>();
 
         }
 

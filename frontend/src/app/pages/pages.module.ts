@@ -1,4 +1,3 @@
-import { environment } from './../../environments/environment';
 import { BookUpdateModule } from './book-update/book-update.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -32,7 +31,7 @@ import { BookListModule } from './book-list/book-list.module';
     NbInputModule,
     ReactiveFormsModule,
     BookUpdateModule,
-    BookListModule
+    BookListModule,
   ],
   declarations: [
     PagesComponent

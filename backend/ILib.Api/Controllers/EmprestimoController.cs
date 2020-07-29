@@ -110,7 +110,5 @@ namespace ILib.Api.Controllers
             }
             return BadRequest(_emprestimoServico.Erros);
         }
-
-
     }
 }

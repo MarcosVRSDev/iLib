@@ -14,6 +14,7 @@ using ILib.Servicos.Emprestimos.Validadores.Exclusao;
 using ILib.Servicos.Emprestimos.Validadores.Confirmacao;
 using ILib.Servicos.Emprestimos.Validadores.Devolucao;
 using ILib.Servicos.Emprestimos.Validadores.SelecaoPosStatus;
+using ILib.Servicos.Usuarios;
 
 namespace ILib.Servicos
 {
@@ -37,6 +38,9 @@ namespace ILib.Servicos
             services.AddTransient<IEmprestimoValidacaoConfirmacao, EmprestimoValidacaoConfirmacao>();
             services.AddTransient<IEmprestimoValidacaoDevolucao, EmprestimoValidacaoDevolucao>();
             services.AddTransient<IEmprestimoValidacaoSelecaoPorStatus, EmprestimoValidacaoSelecaoPorStatus>();
+
+            //Usuarios
+            services.AddTransient<IUsuarioServico, UsuarioServico>();
 
             //AutoMapper
 

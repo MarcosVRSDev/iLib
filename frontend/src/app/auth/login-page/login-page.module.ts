@@ -17,7 +17,8 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     RouterModule,
     NbBadgeModule,
     NbLayoutModule,
-    NbEvaIconsModule
+    NbEvaIconsModule,
+    NbCardModule
   ],
   declarations: [
     LoginPageComponent

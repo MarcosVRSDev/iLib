@@ -1,9 +1,10 @@
-﻿using ILib.Core;
+﻿using ILib.Core.DominioObjetos;
+using ILib.Dominio.Entidades;
 using System.Collections.Generic;
 
-namespace ILib.Dominio.Entidades
+namespace ILib.Servicos.Usuarios
 {
-    public class Usuario : Entidade
+    public class UsuarioViewModel : ViewModel
     {
         public string Uid { get; set; }
         public string Nome { get; set; }

@@ -43,6 +43,8 @@ namespace ILib.Infra.Mapeamento
                 .HasDefaultValue(EStatusEmprestimo.PENDENTE)
                 .HasColumnType("integer");
 
+            builder.HasOne(p => p.Usuario).WithMany(p => p.Emprestimos).HasForeignKey(p => p.UsuarioId);
+
             builder.Property(p => p.UsuarioId)
                 .HasColumnName("Emp_Usuario_Id")
                 .IsRequired()
