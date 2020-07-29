@@ -36,3 +36,7 @@ nb-card-header, .center {
   button {
     margin: 0 auto;
   }
+
+  input[type=file] {
+    display: none;
+  }

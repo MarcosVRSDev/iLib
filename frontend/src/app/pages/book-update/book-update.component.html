@@ -24,9 +24,11 @@
 
                     <label class="label col-sm-3 col-form-label">Selecionar foto da capa:</label>
                     <div class="col-sm-9">
-                        <button nbButton>
-                            <input formControlName="novaFotoUrl" type="file" (change)="upload($event)" accept=".png,.jpg" >
-                        </button>
+                      <button size="small" nbTooltipStatus="success" nbButton status="info" (click)="file.click()">
+                        <i class="fas fa-file-image"></i>Selecione a foto
+                        <input formControlName="novaFotoUrl" type="file" (change)="upload($event)" accept=".png,.jpg" #file>
+                      </button>
+                      <strong *ngIf="form.controls.novaFotoUrl.pristine" class="text-info"> Nenhuma foto selecionada!</strong>
                     </div>
 
                     <br/>
