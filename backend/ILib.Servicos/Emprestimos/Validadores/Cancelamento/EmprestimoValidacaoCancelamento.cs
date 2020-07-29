@@ -1,6 +1,7 @@
 ﻿ using FluentValidation;
 using FluentValidation.Results;
 using ILib.Dominio.Repositorio;
+using System.Threading.Tasks;
 
 namespace ILib.Servicos.Emprestimos.Validadores.Exclusao
 {
@@ -39,9 +40,9 @@ namespace ILib.Servicos.Emprestimos.Validadores.Exclusao
                });
         }
 
-        public ValidationResult Validar(EmprestimoViewModel obj)
+        public async  Task<ValidationResult> Validar(EmprestimoViewModel obj)
         {
-            return Validate(obj);
+            return await ValidateAsync(obj);
         }
     }
 }

@@ -2,6 +2,7 @@
 using FluentValidation.Results;
 using ILib.Dominio.Enums;
 using System;
+using System.Threading.Tasks;
 
 namespace ILib.Servicos.Emprestimos.Validadores.SelecaoPosStatus
 {
@@ -33,9 +34,9 @@ namespace ILib.Servicos.Emprestimos.Validadores.SelecaoPosStatus
             return Enum.IsDefined(typeof(EStatusEmprestimo), statusEnum);
         }
 
-        public ValidationResult Validar(EmprestimoViewModel obj)
+        public async Task<ValidationResult> Validar(EmprestimoViewModel obj)
         {
-            return Validate(obj);
+            return await ValidateAsync(obj);
         }
     }
 }

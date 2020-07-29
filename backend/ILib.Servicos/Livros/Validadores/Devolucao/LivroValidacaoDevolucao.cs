@@ -38,7 +38,7 @@ namespace ILib.Servicos.Livros.Validadores.Devolucao
 
         public ValidationResult Validar(LivroViewModel obj)
         {
-            return Validate(obj);
+            return ValidateAsync(obj).Result;
         }
     }
 }

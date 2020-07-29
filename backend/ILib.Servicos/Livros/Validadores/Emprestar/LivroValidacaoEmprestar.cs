@@ -1,8 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
-using FluentValidation.Validators;
 using ILib.Dominio.Repositorio;
-using System.Threading.Tasks;
 
 namespace ILib.Servicos.Livros.Validadores.Emprestar
 {
@@ -41,7 +39,7 @@ namespace ILib.Servicos.Livros.Validadores.Emprestar
 
         public ValidationResult Validar(LivroViewModel obj)
         {
-            return Validate(obj);
+            return ValidateAsync(obj).Result;
         }
     }
 }

@@ -61,7 +61,7 @@ namespace ILib.Servicos.Emprestimos
 
         public async Task<EmprestimoViewModel> CancelaEmprestimo(EmprestimoViewModel emprestimo)
         {
-            var validacao = _emprestimoValidacaoCancelamento.Validar(emprestimo);
+            var validacao = await _emprestimoValidacaoCancelamento.Validar(emprestimo);
 
             if (validacao.IsValid)
             {
@@ -82,7 +82,7 @@ namespace ILib.Servicos.Emprestimos
 
         public async Task<EmprestimoViewModel> ConfirmaEmprestimo(EmprestimoViewModel emprestimo)
         {
-            var validacao = _emprestimoValidacaoConfirmacao.Validar(emprestimo);
+            var validacao = await _emprestimoValidacaoConfirmacao.Validar(emprestimo);
 
             if (validacao.IsValid)
             {
@@ -106,7 +106,7 @@ namespace ILib.Servicos.Emprestimos
 
         public async Task<EmprestimoViewModel> Criar(EmprestimoViewModel emprestimo)
         {
-            var validacao = _emprestimoValidacaoInclusao.Validar(emprestimo);
+            var validacao = await _emprestimoValidacaoInclusao.Validar(emprestimo);
 
             if (validacao.IsValid)
             {
@@ -116,7 +116,7 @@ namespace ILib.Servicos.Emprestimos
 
 
                 var obj = await _emprestimoRepositorio.Criar(_mapper.Map<Emprestimo>(emprestimo));
-                _ = _livroServico.Emprestar(emprestimo.LivroId);
+                _ = await _livroServico.Emprestar(emprestimo.LivroId);
                 return _mapper.Map<EmprestimoViewModel>(obj);
             }
 
@@ -126,7 +126,7 @@ namespace ILib.Servicos.Emprestimos
 
         public async Task<EmprestimoViewModel> Editar(EmprestimoViewModel emprestimo)
         {
-            var validacao = _emprestimoValidacaoEdicao.Validar(emprestimo);
+            var validacao = await _emprestimoValidacaoEdicao.Validar(emprestimo);
             if (validacao.IsValid)
             {
                 var obj = await _emprestimoRepositorio.SelecionarPorId(emprestimo.Id);
@@ -146,7 +146,7 @@ namespace ILib.Servicos.Emprestimos
 
         public async Task<EmprestimoViewModel> RealizaDevolucao(EmprestimoViewModel emprestimo)
         {
-            var validacao = _emprestimoValidacaoDevolucao.Validar(emprestimo);
+            var validacao = await _emprestimoValidacaoDevolucao.Validar(emprestimo);
             if (validacao.IsValid)
             {
                 var obj = await _emprestimoRepositorio.SelecionarPorId(emprestimo.Id);
@@ -156,7 +156,7 @@ namespace ILib.Servicos.Emprestimos
 
 
                 obj = await _emprestimoRepositorio.Editar(obj);
-                _ = _livroServico.Devolver(obj.LivroId);
+                _ = await _livroServico.Devolver(obj.LivroId);
 
                 return _mapper.Map<EmprestimoViewModel>(obj);
             }
@@ -173,7 +173,7 @@ namespace ILib.Servicos.Emprestimos
         public async Task<ICollection<EmprestimoViewModel>> SelecionarPorStatus(int eStatus)
         {
 
-            var validacao = _emprestimoValidacaoSelecaoPosStatus.Validar(new EmprestimoViewModel { Status = eStatus });
+            var validacao = await _emprestimoValidacaoSelecaoPosStatus.Validar(new EmprestimoViewModel { Status = eStatus });
             if (validacao.IsValid)
             {
                 var objs = await _emprestimoRepositorio.SelecionarPorStatus((EStatusEmprestimo) eStatus);
